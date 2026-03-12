@@ -1,0 +1,30 @@
+<Outlets>
+    <Outlet>
+        <erp_id>API_19032023_001</erp_id>
+        <id></id>
+        <name>THE OFFICE BAR RESTAURANT</name>
+        <address></address>
+        <city_id>1</city_id>
+        <state_erpid>AN</state_erpid>
+        <email>mangalwwwww@mobisy.com</email>
+        <gstinno>32AABCS1429B1ZX</gstinno>
+        <beat_id>3</beat_id>
+        <cstno>22121</cstno>
+        <ownername></ownername>
+        <ownermobile>9876543210</ownermobile>
+        <pin>560098</pin>
+        <balance>120</balance>
+        <isdistributor>0</isdistributor>
+        <area_erpid>test</area_erpid>
+        <taxno>2121</taxno>
+        <code>3232</code>
+        <panno>ABCD2133F</panno>
+        <outlet_category>Outlet</outlet_category>
+        <transactiontype></transactiontype>
+        <outlet_level>credit</outlet_level>
+        <credit_limit>1000</credit_limit>
+        <credit_days>20</credit_days>
+        <outlettype_erpid></outlettype_erpid>
+
+    </Outlet>
+</Outlets>

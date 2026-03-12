@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "entityType": "outlets",
+      "entityTypeId": 5312,
+      "fromDate": " 2026-04-03",
+      "toDate": "2026-04-04",
+      "targetDetailsEntityType": "Skunits",
+      "targetDetailsEntityTypeId": 2,
+      "quantityInCases": 2,
+      "quantityInUnits": 1,
+      "collectionamount": 30,
+      "active": 1,
+      "skuTargetAmount": 200,
+      "targetUploadDateValidation": 1,
+      "warehouseId": 1,
+      "InactiveAndcreateTarget": 1
+    }
+  ]
+}

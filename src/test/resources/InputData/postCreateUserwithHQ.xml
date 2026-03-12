@@ -1,0 +1,13 @@
+<User>
+    <username>UI_DEV_001</username>
+    <employeeid>UI_DEV_001</employeeid>
+    <password>Mobisy@1</password>
+    <name>AMAN KUMAR</name>
+    <designation>distributor salesman</designation>
+    <phoneno>9693878793</phoneno>
+    <Role>5</Role>
+    <isrolespecificid>1</isrolespecificid>
+    <hqErpId></hqErpId>
+    <hqName>notexisthqtesttest</hqName>
+    <active>1</active>
+</User>

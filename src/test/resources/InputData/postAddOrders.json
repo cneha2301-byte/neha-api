@@ -1,0 +1,14 @@
+{
+  "data": {
+    "fordate": "2025-07-17",
+    "fromOutletId": "1",
+    "outletId":"2",
+    "erpid":"14",
+    "orderDetail": {
+      "skunitId": "1",
+      "cases": "1",
+      "unitPrice": "35.00",
+      "quantity": 50
+    }
+  }
+}

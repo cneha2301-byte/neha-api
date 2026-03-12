@@ -1,0 +1,13 @@
+<salesreturns>
+    <salesreturn>
+        <skunit_erpid>6</skunit_erpid>
+        <batch_erpid />
+        <approved_quantity></approved_quantity>
+        <salereturn_no>113</salereturn_no>
+        <invoiceid></invoiceid>
+        <fromoutlet_erpid>99e1</fromoutlet_erpid>
+        <tooutlet_erpid>qww2qw</tooutlet_erpid>
+        <status>1</status>
+        <isPrimarySaleReturn>0</isPrimarySaleReturn>
+    </salesreturn>
+</salesreturns>

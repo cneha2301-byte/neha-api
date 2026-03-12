@@ -1,0 +1,17 @@
+{
+  "Claimdetail": [
+    {
+      "id": "",
+      "approvalstatus": "",
+      "user_id": "",
+      "quantity": "",
+      "require_audit": "",
+      "comment": "",
+      "budgetRuleId": "",
+      "claimdetailfield_id": "",
+      "approvedamount": ""
+    }
+  ]
+}
+
+

@@ -1,0 +1,125 @@
+---
+globs: *.java,*.xml
+description: Maven and Java Coding Standards for API Automation
+---
+
+# Maven and Java Coding Standards
+
+## Maven Configuration
+
+### Project Structure
+- **Main POM**: [pom.xml](mdc:pom.xml) - Central Maven configuration
+- **Java Version**: Java 21 (source and target)
+- **Build Tool**: Maven 3.11.0
+
+### Key Dependencies
+- **Cucumber**: 7.4.1 for BDD testing
+- **RestAssured**: 4.0.0 for API testing
+- **TestNG**: 7.1.0 for test execution
+- **ExtentReports**: 5.1.1 for reporting
+- **Jackson**: 2.9.8 for JSON processing
+
+### Maven Plugins
+- **maven-compiler-plugin**: 3.11.0 (Java 21)
+- **maven-surefire-plugin**: 2.19.1 (TestNG integration)
+- **maven-cucumber-reporting**: 2.8.0 (HTML reports)
+
+## Java Coding Standards
+
+### Package Structure
+```
+com.Bizom
+├── BizomWebAPI/
+│   └── feature/      # BizomWebAPI feature files
+├── IntegrationAPI/
+│   └── feature/      # IntegrationAPI feature files
+├── RetailerAPI/
+│   └── feature/      # RetailerAPI feature files
+├── stepDefinitions/  # Shared step implementation classes
+├── runner/          # Test runners for each suite
+└── hooks/           # Cucumber hooks
+
+com.Bizom.commonUtils
+├── ResourceURIS.java  # Endpoint management
+├── RestAssuredUtils.java # API utilities
+├── JsonUtils.java    # JSON utilities
+└── ConfigReader.java # Configuration management
+```
+
+### Naming Conventions
+
+#### Classes
+- **Step Definitions**: `{Action}Steps.java` (e.g., `GetSteps.java`, `PostSteps.java`)
+- **Utilities**: `{Purpose}Utils.java` (e.g., `JsonUtils.java`, `RestAssuredUtils.java`)
+- **Base Classes**: `{Purpose}Base.java` (e.g., `ApiTestBase.java`)
+
+#### Methods
+- **Step Methods**: Use descriptive Given/When/Then patterns
+- **Utility Methods**: Use camelCase with action verbs (e.g., `parseJson()`, `sendRequest()`)
+- **Constants**: Use UPPER_SNAKE_CASE
+
+#### Variables
+- Use meaningful names that describe purpose
+- Follow camelCase convention
+- Use final for constants
+
+### Code Organization
+
+#### Step Definition Classes
+```java
+public class GetSteps {
+    // GET request implementations
+    @When("I send the GET request to {string} endpoint")
+    public void sendGetRequest(String endpoint) {
+        // Implementation
+    }
+}
+```
+
+#### Utility Classes
+```java
+public class JsonUtils {
+    // Static utility methods
+    public static String parseJson(String jsonPath, String response) {
+        // Implementation
+    }
+}
+```
+
+### Exception Handling
+- Use specific exception types
+- Include meaningful error messages
+- Log exceptions appropriately
+- Fail fast for critical errors
+
+### Documentation
+- Use JavaDoc for public methods
+- Include parameter descriptions
+- Document return values
+- Add usage examples for complex methods
+
+## Build Configuration
+
+### Maven Properties
+```xml
+<properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+```
+
+### Test Execution
+- Use TestNG XML configuration based on executionBase:
+  - `src/test/resources/NG_XMLs/BizomWebAPI_Testng.xml` for WebApi suite
+  - `src/test/resources/NG_XMLs/IntegrationAPI_Testng.xml` for Integration suite
+  - `src/test/resources/NG_XMLs/RetailerAPI_Testng.xml` for Retailer suite
+- Enable parallel execution where appropriate
+- Configure test failure handling
+- Set up proper reporting
+
+### Dependencies Management
+- Use version properties for easy updates
+- Group related dependencies
+- Exclude conflicting transitive dependencies
+- Keep dependency versions consistent across modules

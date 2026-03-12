@@ -1,0 +1,14 @@
+[
+  {
+    "Cdnote": {
+      "outlet_erp_id": "erp123",
+      "warehouse_erp_id": "trp123",
+      "amount": "20",
+      "type": "CREDIT",
+      "comment": "Being Cr note030801",
+      "fordate": "2025-07-14",
+      "erp_id": "cn11",
+      "updatebasedonerp": 1
+    }
+  }
+]

@@ -1,0 +1,466 @@
+# Test Case Documentation Standards
+
+## Test Case Documentation Structure
+
+All test cases must be documented following the specified directory structure and format, mirroring the feature file organization.
+
+### Documentation Directory Structure
+```
+TestCaseDocumentation/
+├── {ModuleName}/
+│   ├── {EndpointName}_ReadMe.md
+│   ├── {EndpointName2}_ReadMe.md
+│   └── {EndpointName3}_ReadMe.md
+├── {ModuleName2}/
+│   ├── {EndpointName}_ReadMe.md
+│   └── {EndpointName2}_ReadMe.md
+└── README.md (Master index)
+```
+
+### Documentation File Locations
+- **Master Index**: `TestCaseDocumentation/README.md`
+- **Module Documentation**: `TestCaseDocumentation/{ModuleName}/README.md`
+- **Endpoint Documentation**: `TestCaseDocumentation/{ModuleName}/{EndpointName}_ReadMe.md`
+
+### Directory Structure Examples
+```
+TestCaseDocumentation/
+├── Zones/
+│   ├── zones_add_ReadMe.md
+│   ├── zones_list_ReadMe.md
+│   └── zones_update_ReadMe.md
+├── Users/
+│   ├── users_create_ReadMe.md
+│   ├── users_login_ReadMe.md
+│   └── users_profile_ReadMe.md
+├── Orders/
+│   ├── orders_create_ReadMe.md
+│   ├── orders_list_ReadMe.md
+│   └── orders_update_ReadMe.md
+└── README.md
+```
+
+### Documentation Format
+
+#### Master Index Documentation (TestCaseDocumentation/README.md)
+```markdown
+# API Test Case Documentation Index
+
+## Overview
+This directory contains comprehensive documentation for all API test cases organized by module and endpoint.
+
+## Module Index
+
+### [Zones](./Zones/README.md)
+- [Zones Add API](./Zones/zones_add_ReadMe.md)
+- [Zones List API](./Zones/zones_list_ReadMe.md)
+- [Zones Update API](./Zones/zones_update_ReadMe.md)
+
+### [Users](./Users/README.md)
+- [Users Create API](./Users/users_create_ReadMe.md)
+- [Users Login API](./Users/users_login_ReadMe.md)
+- [Users Profile API](./Users/users_profile_ReadMe.md)
+
+### [Orders](./Orders/README.md)
+- [Orders Create API](./Orders/orders_create_ReadMe.md)
+- [Orders List API](./Orders/orders_list_ReadMe.md)
+- [Orders Update API](./Orders/orders_update_ReadMe.md)
+
+## Documentation Standards
+- Each endpoint has its own dedicated documentation file
+- Module-level README provides overview and links to endpoint documentation
+- All documentation follows consistent format and structure
+- Links to feature files and test data are included
+```
+
+#### Module README Structure (TestCaseDocumentation/{ModuleName}/README.md)
+```markdown
+# {ModuleName} API Test Cases
+
+## Overview
+Brief description of the {ModuleName} API module and its purpose.
+
+## Test Coverage
+- **Total Test Cases**: {count}
+- **Positive Scenarios**: {count}
+- **Negative Scenarios**: {count}
+- **Performance Tests**: {count}
+
+## Endpoint Documentation
+- [Endpoint 1 Name](./{endpoint1}_ReadMe.md) - {brief_description}
+- [Endpoint 2 Name](./{endpoint2}_ReadMe.md) - {brief_description}
+- [Endpoint 3 Name](./{endpoint3}_ReadMe.md) - {brief_description}
+
+## Module Configuration
+- **Base URI**: {base_uri}
+- **Authentication**: {auth_method}
+- **Common Headers**: {common_headers}
+
+## Test Data Files
+- `{payload_file_1}.json` - {description}
+- `{payload_file_2}.json` - {description}
+- `{payload_file_3}.json` - {description}
+
+## Execution Notes
+- **Prerequisites**: {prerequisites}
+- **Dependencies**: {dependencies}
+- **Cleanup**: {cleanup_requirements}
+```
+
+#### Endpoint Documentation Structure (TestCaseDocumentation/{ModuleName}/{EndpointName}_ReadMe.md)
+```markdown
+# {EndpointName} API Test Cases
+
+## Overview
+Brief description of the {EndpointName} API endpoint and its purpose.
+
+## API Details
+- **Endpoint**: {HTTP_METHOD} {endpoint_path}
+- **Content-Type**: {content_type}
+- **Authentication**: {auth_method}
+
+## Test Cases
+
+### Positive Scenarios
+
+#### TC_01: {Test Case Name}
+- **Type**: Positive
+- **Description**: {detailed_description}
+- **Feature File**: `src/test/java/com/Bizom/{SuiteName}/feature/{feature_file}.feature`
+- **Payload**: {payload_file_name}
+- **Expected Status**: {status_code}
+- **Validation Points**:
+  - Status Code: {expected_status}
+  - Response Fields: {field_validations}
+  - Performance: < {time_limit}ms
+- **Business Logic**: {business_rule_validation}
+- **Tags**: @{ModuleName} @PositiveScenario @Sanity
+
+### Negative Scenarios
+
+#### TC_02: {Test Case Name}
+- **Type**: Negative
+- **Description**: {detailed_description}
+- **Feature File**: `src/test/java/com/Bizom/{SuiteName}/feature/{feature_file}.feature`
+- **Payload**: {payload_file_name}
+- **Expected Status**: {status_code}
+- **Validation Points**:
+  - Status Code: {expected_status}
+  - Error Fields: {error_field_validations}
+  - Performance: < {time_limit}ms
+- **Business Logic**: {error_condition_validation}
+- **Tags**: @{ModuleName} @NegativeScenario @Sanity
+
+## Test Data Files
+- `{payload_file_1}.json` - {description}
+- `{payload_file_2}.json` - {description}
+- `{payload_file_3}.json` - {description}
+
+## Endpoint Configuration
+- **Base URI**: {base_uri}
+- **Resource URI**: {resource_uri}
+- **Authentication**: {auth_method}
+
+## Running the Test
+
+### Prerequisites
+1. Ensure all dependencies are installed
+2. Update the base URI in `config.properties` if needed
+3. Verify authentication tokens are valid
+
+### Execution
+Run the test using the existing TestNG runner:
+```bash
+mvn test -Dcucumber.filter.tags="@{ModuleName}"
+```
+
+Or run specific scenario:
+```bash
+mvn test -Dcucumber.filter.tags="@{ModuleName} and @Positive"
+```
+
+## Troubleshooting
+- Ensure authentication tokens are valid and not expired
+- Verify session cookies are properly set
+- Check that the base URI is accessible
+- Validate that the payload data is correct
+```
+
+## Documentation Requirements
+
+### Mandatory Fields for Each Test Case
+1. **Test Case ID**: TC_XX format
+2. **Test Case Name**: Descriptive name
+3. **Type**: Positive/Negative/Performance
+4. **Description**: What the test validates
+5. **Endpoint**: HTTP method and path
+6. **Payload**: Associated payload file
+7. **Expected Status**: HTTP status code
+8. **Validation Points**: Specific validations
+9. **Tags**: Cucumber tags used
+10. **Business Logic**: Business rule validation
+
+### Documentation Maintenance Rules
+
+#### When to Update Documentation
+1. **New Test Case Added**: Create/update endpoint documentation file
+2. **Test Case Modified**: Update relevant endpoint documentation
+3. **Test Case Removed**: Remove from endpoint documentation
+4. **New Endpoint Added**: Create new endpoint documentation file and update module README
+5. **New Module Added**: Create module directory and README
+6. **Endpoint Changed**: Update endpoint information in documentation
+7. **Payload Modified**: Update payload references in documentation
+
+#### Documentation Update Process
+1. **Create/Update Endpoint Documentation**: Create or update `{EndpointName}_ReadMe.md`
+2. **Update Module README**: Update module-level README with new endpoint links
+3. **Update Master Index**: Update `TestCaseDocumentation/README.md` with new modules/endpoints
+4. **Update Test Data Section**: Update payload file references
+5. **Update Endpoint Configuration**: Update endpoint mappings
+6. **Review and Validate**: Ensure consistency across all documentation levels
+
+### Documentation Standards
+
+#### Naming Conventions
+- **Test Case ID**: `TC_XX` where XX is zero-padded number
+- **Test Case Name**: `{Action} {Entity} - {Scenario Description}`
+- **Module Name**: PascalCase (e.g., `Users`, `Orders`, `Zones`)
+- **Endpoint Name**: `{module}_{action}` (e.g., `zones_add`, `users_create`, `orders_list`)
+- **Documentation Files**: `{EndpointName}_ReadMe.md` (e.g., `zones_add_ReadMe.md`)
+- **Payload Files**: `{action}{Entity}.json` (e.g., `postAddZone.json`)
+- **Feature Files**: `{EndpointName}.feature` (e.g., `zones_add.feature`)
+
+#### Content Standards
+- **Descriptions**: Clear, concise, business-focused
+- **Technical Details**: Include endpoint, payload, expected results
+- **Business Context**: Explain why the test is important
+- **Maintenance Info**: Include prerequisites and cleanup
+
+#### Formatting Standards
+- **Markdown Format**: Use proper markdown syntax
+- **Consistent Structure**: Follow template structure exactly
+- **Code Blocks**: Use code blocks for technical details
+- **Tables**: Use tables for structured data
+- **Links**: Link to relevant files and resources
+
+## Example Documentation
+
+### Master Index Example (TestCaseDocumentation/README.md)
+```markdown
+# API Test Case Documentation Index
+
+## Overview
+This directory contains comprehensive documentation for all API test cases organized by module and endpoint.
+
+## Module Index
+
+### [Zones](./Zones/README.md)
+- [Zones Add API](./Zones/zones_add_ReadMe.md)
+- [Zones List API](./Zones/zones_list_ReadMe.md)
+- [Zones Update API](./Zones/zones_update_ReadMe.md)
+
+### [Users](./Users/README.md)
+- [Users Create API](./Users/users_create_ReadMe.md)
+- [Users Login API](./Users/users_login_ReadMe.md)
+
+## Documentation Standards
+- Each endpoint has its own dedicated documentation file
+- Module-level README provides overview and links to endpoint documentation
+- All documentation follows consistent format and structure
+- Links to feature files and test data are included
+```
+
+### Module README Example (TestCaseDocumentation/Zones/README.md)
+```markdown
+# Zones API Test Cases
+
+## Overview
+The Zones API module handles zone management operations including creation, validation, and error handling for zone-related functionality.
+
+## Test Coverage
+- **Total Test Cases**: 10
+- **Positive Scenarios**: 2
+- **Negative Scenarios**: 8
+- **Performance Tests**: 10
+
+## Endpoint Documentation
+- [Zones Add API](./zones_add_ReadMe.md) - Zone creation and validation
+- [Zones List API](./zones_list_ReadMe.md) - Zone listing and filtering
+- [Zones Update API](./zones_update_ReadMe.md) - Zone modification
+
+## Module Configuration
+- **Base URI**: https://devuitest.bizomdev.in
+- **Authentication**: Dynamic access token via query parameter
+- **Common Headers**: Content-Type: application/x-www-form-urlencoded
+
+## Test Data Files
+- `postAddZone.json` - Basic valid zone creation payload
+- `postAddZoneValidData.json` - Valid data with proper naming
+- `postAddZoneEmptyName.json` - Empty name for negative testing
+
+## Execution Notes
+- **Prerequisites**: Valid access token required
+- **Dependencies**: Authentication service
+- **Cleanup**: No cleanup required for zone creation tests
+```
+
+### Endpoint Documentation Example (TestCaseDocumentation/Zones/zones_add_ReadMe.md)
+```markdown
+# Zones Add API Test Cases
+
+## Overview
+This document describes the test cases for the Zones Add API endpoint, covering both positive and negative scenarios for zone creation.
+
+## API Details
+- **Endpoint**: POST /zones/add
+- **Content-Type**: application/x-www-form-urlencoded
+- **Authentication**: Dynamic access token via query parameter
+
+## Test Cases
+
+### Positive Scenarios
+
+#### TC_01: Add Zone API - status code positive case
+- **Type**: Positive
+- **Description**: Validates successful zone creation with valid zone name and SAP code
+- **Feature File**: `src/test/java/com/Bizom/BizomWebAPI/feature/zones_add.feature`
+- **Payload**: postAddZone.json
+- **Expected Status**: 200
+- **Validation Points**:
+  - Status Code: 200
+  - Response Fields: $.Result = true
+  - Performance: < 1200ms
+- **Business Logic**: Zone should be created successfully with valid data
+- **Tags**: @Zones @PositiveScenario @Sanity
+
+### Negative Scenarios
+
+#### TC_02: Add Zone API - with empty zone name
+- **Type**: Negative
+- **Description**: Validates error handling when zone name is empty
+- **Feature File**: `src/test/java/com/Bizom/BizomWebAPI/feature/zones_add.feature`
+- **Payload**: postAddZone.json
+- **Expected Status**: 400
+- **Validation Points**:
+  - Status Code: 400
+  - Error Fields: $.Result = false, $.error = bad_request
+  - Performance: < 1200ms
+- **Business Logic**: System should reject empty zone names
+- **Tags**: @Zones @NegativeScenario @Sanity
+
+## Test Data Files
+- `postAddZone.json` - Basic valid zone creation payload
+- `postAddZoneValidData.json` - Valid data with proper naming
+- `postAddZoneEmptyName.json` - Empty name for negative testing
+- `postAddZoneEmptySapCode.json` - Empty SAP code for negative testing
+
+## Endpoint Configuration
+- **Base URI**: https://devuitest.bizomdev.in
+- **Resource URI**: /zones/add
+- **Authentication**: Dynamic access token via query parameter
+
+## Running the Test
+
+### Prerequisites
+1. Ensure all dependencies are installed
+2. Update the base URI in `config.properties` if needed
+3. Verify authentication tokens are valid
+
+### Execution
+Run the test using the existing TestNG runner:
+```bash
+mvn test -Dcucumber.filter.tags="@Zones"
+```
+
+Or run specific scenario:
+```bash
+mvn test -Dcucumber.filter.tags="@Zones and @Positive"
+```
+
+## Troubleshooting
+- Ensure authentication tokens are valid and not expired
+- Verify session cookies are properly set
+- Check that the base URI is accessible
+- Validate that the form data parameters are correct
+```
+
+## Directory Structure Setup
+
+### Creating the Documentation Structure
+When setting up documentation for a new module or endpoint:
+
+1. **Create Module Directory**:
+   ```bash
+   mkdir -p TestCaseDocumentation/{ModuleName}
+   ```
+
+2. **Create Module README**:
+   ```bash
+   touch TestCaseDocumentation/{ModuleName}/README.md
+   ```
+
+3. **Create Endpoint Documentation**:
+   ```bash
+   touch TestCaseDocumentation/{ModuleName}/{EndpointName}_ReadMe.md
+   ```
+
+4. **Update Master Index**:
+   - Add module link to `TestCaseDocumentation/README.md`
+   - Add endpoint links to module README
+
+### Directory Structure Commands
+```bash
+# Create complete structure for a new module
+mkdir -p TestCaseDocumentation/{ModuleName}
+touch TestCaseDocumentation/{ModuleName}/README.md
+touch TestCaseDocumentation/{ModuleName}/{EndpointName1}_ReadMe.md
+touch TestCaseDocumentation/{ModuleName}/{EndpointName2}_ReadMe.md
+
+# Example for Zones module
+mkdir -p TestCaseDocumentation/Zones
+touch TestCaseDocumentation/Zones/README.md
+touch TestCaseDocumentation/Zones/zones_add_ReadMe.md
+touch TestCaseDocumentation/Zones/zones_list_ReadMe.md
+touch TestCaseDocumentation/Zones/zones_update_ReadMe.md
+```
+
+## Documentation Automation
+
+### Auto-Generation Scripts
+- **Test Case Extractor**: Script to extract test cases from feature files
+- **Documentation Generator**: Script to generate documentation from test metadata
+- **Directory Structure Generator**: Script to create directory structure for new modules
+- **Validation Script**: Script to validate documentation completeness
+
+### Integration with CI/CD
+- **Pre-commit Hook**: Validate documentation updates
+- **Build Process**: Generate documentation during build
+- **Report Generation**: Include documentation in test reports
+- **Directory Validation**: Ensure directory structure follows standards
+
+## Quality Assurance
+
+### Documentation Review Checklist
+- [ ] Directory structure follows `TestCaseDocumentation/{ModuleName}/{EndpointName}_ReadMe.md` pattern
+- [ ] Master index (`TestCaseDocumentation/README.md`) includes all modules
+- [ ] Module README files include all endpoints with proper links
+- [ ] All test cases documented in endpoint-specific files
+- [ ] Test case details complete (ID, description, endpoint, payload, validation)
+- [ ] Payload files referenced correctly
+- [ ] Endpoint information accurate
+- [ ] Feature file paths included
+- [ ] Tags and classifications correct
+- [ ] Business logic explained
+- [ ] Maintenance information included
+- [ ] Links between documentation files working
+- [ ] Naming conventions followed
+
+### Documentation Validation
+- **Directory Structure**: Follows `TestCaseDocumentation/{ModuleName}/{EndpointName}_ReadMe.md` pattern
+- **Completeness**: All test cases documented in appropriate endpoint files
+- **Accuracy**: Information matches actual test implementation
+- **Consistency**: Format and structure consistent across all files
+- **Link Integrity**: All internal links work correctly
+- **Maintainability**: Easy to update and maintain
+- **Usability**: Clear and understandable for all stakeholders
+- **Navigation**: Easy to find specific test case documentation

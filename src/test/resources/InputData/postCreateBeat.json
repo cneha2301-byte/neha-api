@@ -1,0 +1,22 @@
+{
+  "Beats": [
+    {
+      "name": "SBI Beat17",
+      "approved": 1,
+      "active": 1,
+      "beatassigningform_id": 2,
+      "segment_name": "test",
+      "erpid": "vsBeat1",
+      "zone_erpid": "sz1"
+    },
+    {
+      "name": "SBI Beat18",
+      "approved": 1,
+      "active": 1,
+      "beatassigningform_id": 2,
+      "segment_name": "test",
+      "erpid": "vsBeat2",
+      "zone_erpid": "sz1"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+<Warehouse>
+    <erp_id>s12345</erp_id>
+    <name>JAI BABA KIRANA STORE</name>
+    <address>KARAHAL</address>
+    <phoneno></phoneno>
+    <panno>BRPPG3968Q</panno>
+    <pin>476355</pin>
+    <email></email>
+    <state_erpid>AN</state_erpid>
+    <city></city>
+    <district_id></district_id>
+    <warehousetype_erpid>test</warehousetype_erpid>
+    <active>1</active>
+    <zone_erpid>sz1</zone_erpid>
+    <gstinno>23BRPPG3968Q1ZY</gstinno>
+    <isdistributor>1</isdistributor>
+    <subzone_erpid>erp1</subzone_erpid>
+    <mapped_warehouse_erpid>trp123</mapped_warehouse_erpid>
+    <isupdatedepo>0</isupdatedepo>
+</Warehouse>

@@ -1,0 +1,15 @@
+{
+  "Depomargins": {
+    "Depomargin": [
+      {
+        "fromentitytype_erpid": "120",
+        "fromentitytype": "warehouses",
+        "skunit_erpid": "14",
+        "toentitytype": "outlets",
+        "toentitytype_id": "13",
+        "marginpercent": "10.00"
+      }
+    ]
+  }
+}
+

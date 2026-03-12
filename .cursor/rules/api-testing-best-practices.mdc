@@ -1,0 +1,223 @@
+---
+alwaysApply: true
+description: API Testing Best Practices and Guidelines
+---
+
+# API Testing Best Practices
+
+## Test Design Principles
+
+### Test Pyramid Strategy
+1. **Unit Tests** (70%): Fast, isolated tests for individual components
+2. **Integration Tests** (20%): API endpoint testing with database validation
+3. **E2E Tests** (10%): Complete user journey testing
+
+### Test Coverage Areas
+- **Functional Testing**: API functionality and business logic
+- **Performance Testing**: Response times and load handling
+- **Security Testing**: Authentication, authorization, and data protection
+- **Negative Testing**: Error handling and edge cases
+- **Data Validation**: Request/response data integrity
+
+## API Test Organization
+
+### Feature File Structure
+```
+src/test/java/com/Bizom/
+├── BizomWebAPI/feature/
+│   ├── Generic_Redirection_Examples.feature
+│   └── POST_WebAddUser.feature
+├── IntegrationAPI/feature/
+│   ├── Orders/
+│   │   ├── GET_ListOrders.feature
+│   │   └── postAddOrders.feature
+│   ├── Users/
+│   │   ├── GET_ListUsers.feature
+│   │   └── postCreateUsers.feature
+│   └── Sales/
+│       ├── GET_SecondarySales.feature
+│       └── POST_AddPrimarySales.feature
+└── RetailerAPI/feature/
+    └── RetailerDemo.feature
+```
+
+### Test Scenarios by Type
+- **Positive Scenarios**: Valid requests with expected responses
+- **Negative Scenarios**: Invalid requests with proper error handling
+- **Boundary Testing**: Edge cases and limit testing
+- **Security Scenarios**: Authentication and authorization testing
+
+## Request/Response Patterns
+
+### Standard Request Headers
+```gherkin
+When I set up request specification
+  |HeaderName|HeaderValue|
+  |Content-Type|application/json|
+  |Accept|*/*|
+  |Accept-Encoding|gzip,deflate, br|
+  |Connection|keep-alive|
+```
+
+### Authentication Patterns
+```gherkin
+# Dynamic token resolution
+And I post the request with "payloadName" payload with dynamic access token and query parameters
+  |Query         |Value         |
+  |access_token  |ACCESS_TOKEN  |
+
+# Static token (for specific test cases)
+And I post the request with "payloadName" payload with query parameters
+  |Query         |Value         |
+  |access_token  |static_token  |
+```
+
+### Response Validation Hierarchy
+1. **Status Code Validation**: Always validate HTTP status codes first
+2. **Response Structure**: Validate JSON/XML structure and required fields
+3. **Business Logic**: Validate business rules and data integrity
+4. **Performance**: Check response times for performance requirements
+
+## Data Management
+
+### Test Data Strategy
+- **Independent Test Data**: Each test uses unique, non-conflicting data
+- **Data Cleanup**: Implement proper cleanup mechanisms
+- **Environment Isolation**: Separate test data across environments
+- **Dynamic Data**: Use random generation for unique identifiers
+
+### Payload Management
+```json
+{
+  "data": {
+    "erpid": "random",
+    "order_id": "storedResponse",
+    "timestamp": "current_time",
+    "user_id": "test_user_001"
+  }
+}
+```
+
+**Dynamic Field Types:**
+- `random`: Generate random values
+- `storedResponse`: Reference previous API response values
+- `current_time`: Use current timestamp
+- `test_user_001`: Use predefined test identifiers
+
+## Error Handling and Validation
+
+### Common Error Scenarios
+```gherkin
+# Authentication errors
+Then I should see the response code as "401"
+And the fields in response should match with expected values
+  | JPath                   | Value           |
+  | $.error                 | invalid_request |
+  | $.error_description     | The access token was not found. |
+
+# Validation errors
+Then I should see the response code as "400"
+And the fields in response should match with expected values
+  | JPath     | Value        |
+  | $.error   | bad_request  |
+  | $.message | Invalid input parameters |
+```
+
+### Response Time Validation
+```gherkin
+# Standard performance requirements
+And verify response time is less than "1200" milliseconds
+
+# Critical endpoint performance
+And verify response time is less than "500" milliseconds
+```
+
+## Test Maintenance
+
+### Code Reusability
+- **Common Step Definitions**: Reuse steps across feature files
+- **Utility Functions**: Centralize common operations in utility classes
+- **Configuration Management**: Use centralized configuration for environment settings
+- **Data Management**: Implement reusable data setup and cleanup methods
+
+### Test Documentation
+- **Feature Descriptions**: Clear, business-focused feature descriptions
+- **Scenario Names**: Descriptive scenario names that explain the test purpose
+- **Step Documentation**: Document complex steps and their parameters
+- **Maintenance Notes**: Document known issues and maintenance requirements
+
+## Performance Considerations
+
+### Test Execution Optimization
+1. **Parallel Execution**: Run tests in parallel where possible
+2. **Test Data Optimization**: Minimize test data setup time
+3. **Environment Setup**: Optimize environment configuration and startup
+4. **Resource Management**: Proper cleanup of resources and connections
+
+### API Performance Testing
+```gherkin
+# Load testing scenarios
+@Performance
+Scenario: API load testing
+  Given I set up base URI for transactions
+  When I send multiple concurrent GET requests to "endpoint" endpoint
+  Then all requests should complete within "2000" milliseconds
+```
+
+## Security Testing
+
+### Authentication Testing
+```gherkin
+@Security
+Scenario: Test token validation
+  Given I set up base URI for transactions
+  When I send the GET request to "endpoint" endpoint with invalid token
+  Then I should see the response code as "401"
+  And the response should contain security headers
+```
+
+### Data Protection Testing
+```gherkin
+@Security
+Scenario: Test sensitive data handling
+  Given I set up base URI for transactions
+  When I send the POST request with sensitive data
+  Then sensitive fields should not be logged
+  And response should not contain sensitive information
+```
+
+## Monitoring and Reporting
+
+### Test Execution Monitoring
+- **Success Rate Tracking**: Monitor test execution success rates
+- **Performance Trends**: Track API response time trends
+- **Failure Analysis**: Analyze and categorize test failures
+- **Environment Health**: Monitor API endpoint availability
+
+### Report Generation
+- **Detailed Reports**: Generate comprehensive test execution reports
+- **Trend Analysis**: Create trend reports for test metrics
+- **Failure Reports**: Detailed failure analysis and root cause identification
+- **Performance Reports**: API performance and response time analysis
+
+## Best Practices Summary
+
+### Do's
+1. **Use meaningful test names and descriptions**
+2. **Implement proper test data management**
+3. **Validate both positive and negative scenarios**
+4. **Use centralized configuration management**
+5. **Implement proper error handling and reporting**
+6. **Maintain test independence and isolation**
+7. **Use appropriate test tags for categorization**
+8. **Implement proper cleanup mechanisms**
+
+### Don'ts
+1. **Don't hardcode test data in feature files**
+2. **Don't create dependent tests that rely on execution order**
+3. **Don't ignore error scenarios and edge cases**
+4. **Don't use production data for testing**
+5. **Don't skip performance validation for critical APIs**
+6. **Don't create overly complex test scenarios**
+7. **Don't ignore test maintenance and updates**
+8. **Don't compromise on test data security**

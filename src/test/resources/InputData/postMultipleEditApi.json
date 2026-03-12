@@ -1,0 +1,30 @@
+{
+    "Orders": [
+      {
+        "order_id": "", 
+        "erp_id": "ERP001",
+        "changeStatus": {
+          "orderstatecomment": "Test",
+          "neworderstate_id": "1"
+        },
+        "Orderdetail": [
+          {
+            "skucode": "sku001",
+            "cases": "0",
+            "quantity": "2",
+            "reason_id": 0,
+            "editquantity_reasonid": 0,
+            "is_free": "0"
+          },
+          {
+            "skucode": "sku02",
+            "cases": "0",
+            "quantity": "2",
+            "reason_id": 0,
+            "editquantity_reasonid": 0,
+            "is_free": "0"
+          }
+        ]
+      }
+    ]
+  }

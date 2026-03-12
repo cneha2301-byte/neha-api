@@ -1,0 +1,114 @@
+# API Automation Framework Rules
+
+## Critical Naming Convention Rule
+
+### Resource URI, Payload Name, and File Name Consistency
+**MANDATORY RULE**: For all API automation requests, the following three names MUST be identical:
+
+1. **Resource URI Name** (in ResourceURIS.java)
+2. **Payload Name** (used in feature files)
+3. **Payload File Name** (actual file name in InputData directory)
+
+#### Example:
+- Resource URI: `areas_add_Valid`
+- Payload Name: `areas_add_Valid` 
+- File Name: `areas_add_Valid.txt`
+
+#### Implementation Steps:
+1. **ResourceURIS.java**: Add constant with exact name
+2. **Switch Statement**: Add case mapping in getResourceURI() method
+3. **Payload File**: Create file with exact same name + extension
+4. **Feature File**: Use exact same name in step definitions
+
+#### Naming Pattern:
+- **Base Endpoint**: `{module}_{action}` (e.g., `areas_add`, `subbrands_add`)
+- **Variants**: `{module}_{action}_{scenario}` (e.g., `areas_add_Valid`, `areas_add_MissingFields`)
+
+#### Common Scenarios:
+- `{endpoint}_Valid` - Valid payload data
+- `{endpoint}_MissingFields` - Missing required fields
+- `{endpoint}_InvalidData` - Invalid data types
+- `{endpoint}_SQLInjection` - SQL injection attempts
+- `{endpoint}_XSS` - XSS attack attempts
+- `{endpoint}_MaxLength` - Maximum field length testing
+
+## Framework Structure Rules
+
+### Feature File Organization
+- **BizomWebAPI**: `src/test/java/com/Bizom/BizomWebAPI/feature/`
+- **IntegrationAPI**: `src/test/java/com/Bizom/IntegrationAPI/feature/`
+- **RetailerAPI**: `src/test/java/com/Bizom/RetailerAPI/feature/`
+
+### Payload File Location
+- **All payloads**: `src/test/resources/InputData/`
+- **File extensions**: `.txt` for form-encoded, `.json` for JSON, `.xml` for XML
+
+### Step Definition Usage
+- Use existing step definitions from `src/test/java/com/Bizom/stepDefinitions/`
+- Follow established patterns for GET, POST, PUT, DELETE operations
+- Maintain consistency with existing step naming conventions
+
+### Tagging Standards
+- **Suite Tags**: `@BizomWebAPI`, `@Execution` (for Integration/Retailer)
+- **Module Tags**: `@AreasManagement`, `@SubbrandsManagement`, etc.
+- **Action Tags**: `@GetAreas`, `@PostAddAreas`, etc.
+- **Scenario Tags**: `@Positive`, `@Negative`, `@Smoke`, `@Functional`, etc.
+
+## Quality Assurance Rules
+
+### Test Coverage Requirements
+- **Positive Scenarios**: Smoke, Functional, Data Validation, Performance, Security
+- **Negative Scenarios**: Validation, Security, Method Validation, Performance
+- **Edge Cases**: Boundary testing, Rate limiting, Concurrent requests
+
+### Response Validation
+- Always validate HTTP status codes
+- Include response time validation
+- Validate response headers where applicable
+- Include content validation for critical endpoints
+
+### Security Testing
+- Authentication and session validation
+- CSRF token validation
+- SQL injection prevention testing
+- XSS attack prevention testing
+- Input validation testing
+
+## Maintenance Rules
+
+### Code Consistency
+- Follow existing project patterns
+- Use established step definitions
+- Maintain consistent error handling
+- Follow Java coding standards (camelCase, meaningful names)
+
+### Documentation
+- Include comprehensive scenario descriptions
+- Document all test data variations
+- Maintain clear feature file structure
+- Add comments for complex test logic
+
+### Version Control
+- Commit changes with descriptive messages
+- Include both feature files and payload files in commits
+- Update ResourceURIS.java with all new endpoints
+- Test changes before committing
+
+## Error Prevention
+
+### Common Mistakes to Avoid
+1. **Naming Mismatch**: Resource URI ≠ Payload Name ≠ File Name
+2. **Missing Switch Cases**: Forgetting to add cases in ResourceURIS.java
+3. **Incorrect File Extensions**: Using wrong extension for payload type
+4. **Missing Headers**: Not including all required headers from curl requests
+5. **Inconsistent Tagging**: Using different tag patterns across similar features
+
+### Validation Checklist
+- [ ] Resource URI name matches payload name
+- [ ] Payload file name matches resource URI name
+- [ ] Switch case added in ResourceURIS.java
+- [ ] All headers from curl request included
+- [ ] Proper tagging applied
+- [ ] Both positive and negative scenarios covered
+- [ ] Response validation included
+- [ ] Performance testing included where applicable

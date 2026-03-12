@@ -1,0 +1,30 @@
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="_token"
+
+w6iwBbR4Z4rgI4h9qoiuzXtqOJ1WDQ7QUfeOcZff
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][name]"
+
+Brand@#$%^&*()_+{}[]|
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][sequence]"
+
+2
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][pictureurl]"
+
+
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][status]"
+
+1
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][brandsImage]"; filename=""
+Content-Type: application/octet-stream
+
+
+------WebKitFormBoundaryypS4U5ljyfphbKqY
+Content-Disposition: form-data; name="data[Brand][erp_id]"
+
+trp123
+------WebKitFormBoundaryypS4U5ljyfphbKqY--

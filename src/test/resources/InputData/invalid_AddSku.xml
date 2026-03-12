@@ -1,0 +1,21 @@
+<Skunit>
+    <name>Penicillin</name>
+    <mrp>50</mrp>
+    <vat>5</vat>
+    <price>40</price>
+    <fordevice>1</fordevice>
+    <active>1</active>
+    <unitspercase>5</unitspercase>
+    <unitcase>0.1</unitcase>
+    <brand_erpid></brand_erpid>
+    <size>200</size>
+    <unit>ml</unit>
+    <packaging>TPK</packaging>
+    <skucode>penicillin</skucode>
+    <description>Somed</description>
+    <gst>5</gst>
+    <cess>6</cess>
+    <hsncode>1254781</hsncode>
+    <category_erpid></category_erpid>
+    <subcategory_erpid></subcategory_erpid>
+</Skunit>

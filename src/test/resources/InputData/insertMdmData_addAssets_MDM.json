@@ -1,0 +1,47 @@
+{
+  "transactionid": "dnyyt8rhdo",
+  "data": [
+    {
+      "description": "",
+      "erpno": "",
+      "asset_id": "",
+      "image": "",
+      "is_active": "",
+      "is_autoapprove": "",
+      "name": "",
+      "price": "",
+      "qrcodeenable": "",
+      "activityform_id": "",
+      "auditform_id": "",
+      "reasonform_id": "",
+      "deregisterform_id": "",
+      "is_smart_asset": "",
+      "Asset_validation": "",
+      "asset_type_id": "",
+      "is_deleted": "",
+      "skip_asset_order_approval_flow": "",
+      "Multiple_reference_image": ""
+    },
+    {
+      "description": "",
+      "erpno": "",
+      "asset_id": "",
+      "image": "",
+      "is_active": "",
+      "is_autoapprove": "",
+      "name": "",
+      "price": "",
+      "qrcodeenable": "",
+      "activityform_id": "",
+      "auditform_id": "",
+      "reasonform_id": "",
+      "deregisterform_id": "",
+      "is_smart_asset": "",
+      "Asset_validation": "",
+      "asset_type_id": "",
+      "is_deleted": "",
+      "skip_asset_order_approval_flow": "",
+      "Multiple_reference_image": ""
+    }
+  ]
+}

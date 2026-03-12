@@ -1,0 +1,15 @@
+<Warehouseskunits>
+    <Warehouseskunit>
+        <warehouseERPID>trp123</warehouseERPID>
+        <skunitID>6</skunitID>
+        <vat>0</vat>
+        <mrp>270</mrp>
+        <price>213.21</price>
+        <entitytype>warehouses</entitytype>
+        <entitytype_erpid>111112</entitytype_erpid>
+        <minmargin>200</minmargin>
+        <maxmargin>232</maxmargin>
+        <margintype></margintype>
+        <is_active>1</is_active>
+    </Warehouseskunit>
+</Warehouseskunits>

@@ -1,0 +1,194 @@
+{
+  "multipleScheme": [
+    {
+      "0": {
+        "Scheme": {
+          "name": "API auto1-1",
+          "erp_id": "API auto1-1",
+          "forquantity": "6",
+          "foramount": "",
+          "endrange": "",
+          "discountpercent": "11",
+          "loyaltypoint": "",
+          "maxloyalty": "",
+          "cashbackstartday": "",
+          "cashbackendday": "",
+          "pointtype": "",
+          "maxcash": "",
+          "startdate": "2027-09-06",
+          "enddate": "2027-09-11"
+        },
+        "Forskusgroup": {
+          "102": {
+            "qty": "3"
+          },
+          "103": {
+            "qty": "3"
+          }
+        },
+        "freecashscheme": {
+          "saverupee": "",
+          "maxsavecash": ""
+        },
+        "freeskuscheme": [
+          {
+            "skunit_id":[
+            ],
+            "freequantity": "",
+            "max_quantity": "",
+            "ceiling": ""
+          }
+        ],
+        "freeskuforsku": [
+          {
+            "skunit_id": "102",
+            "freeskunit_id": "2",
+            "freequantity": "2",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          },
+          {
+            "skunit_id": "103",
+            "freeskunit_id": "3",
+            "freequantity": "5",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          }
+        ]
+      },
+      "1": {
+        "Scheme": {
+          "name": "API auto1-2",
+          "erp_id": "API auto1-2",
+          "forquantity": "6",
+          "foramount": "",
+          "endrange": "",
+          "discountpercent": "11",
+          "loyaltypoint": "",
+          "maxloyalty": "",
+          "cashbackstartday": "",
+          "cashbackendday": "",
+          "pointtype": "",
+          "maxcash": "",
+          "startdate": "2027-09-06",
+          "enddate": "2027-09-11"
+        },
+        "Forskusgroup": {
+          "102": {
+            "qty": "3"
+          },
+          "103": {
+            "qty": "3"
+          }
+        },
+        "freecashscheme": {
+          "saverupee": "",
+          "maxsavecash": ""
+        },
+        "freeskuscheme": [
+          {
+            "skunit_id":[
+            ],
+            "freequantity": "",
+            "max_quantity": "",
+            "ceiling": ""
+          }
+        ],
+        "freeskuforsku": [
+          {
+            "skunit_id": "102",
+            "freeskunit_id": "2",
+            "freequantity": "2",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          },
+          {
+            "skunit_id": "103",
+            "freeskunit_id": "3",
+            "freequantity": "5",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          }
+        ]
+      },
+      "2":{
+        "Scheme": {
+          "name": "API auto1-3",
+          "erp_id": "API auto1-3",
+          "forquantity": "6",
+          "foramount": "",
+          "endrange": "",
+          "discountpercent": "11",
+          "loyaltypoint": "",
+          "maxloyalty": "",
+          "cashbackstartday": "",
+          "cashbackendday": "",
+          "pointtype": "",
+          "maxcash": "",
+          "startdate": "2027-09-06",
+          "enddate": "2027-09-11"
+        },
+        "Forskusgroup": {
+          "102": {
+            "qty": "3"
+          },
+          "103": {
+            "qty": "3"
+          }
+        },
+        "freecashscheme": {
+          "saverupee": "",
+          "maxsavecash": ""
+        },
+        "freeskuscheme": [
+          {
+            "skunit_id":[
+            ],
+            "freequantity": "",
+            "max_quantity": "",
+            "ceiling": ""
+          }
+        ],
+        "freeskuforsku": [
+          {
+            "skunit_id": "102",
+            "freeskunit_id": "2",
+            "freequantity": "2",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          },
+          {
+            "skunit_id": "103",
+            "freeskunit_id": "3",
+            "freequantity": "5",
+            "foreverytype": "unit",
+            "foreveryvalue": "1"
+          }
+        ]
+      },
+
+      "group": {
+        "Scheme": {
+          "name": "API auto1",
+          "erp_id": "API SALB erp auto1",
+          "type": "regular",
+          "applytype": "prorated",
+          "entity_type": "skunits",
+          "source": "all",
+          "bufferday": "",
+          "startdate": "2027-09-06",
+          "enddate": "2027-09-30",
+          "applyon": "case",
+          "groupcases": "0",
+          "existingstatus" : 0,
+          "skunit_id": [
+            "102",
+            "103"
+          ],
+          "id": ""
+        }
+      }
+    }
+  ],
+  "multipleSchemeStatus": "1"
+}

@@ -1,0 +1,585 @@
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="_method"
+
+PUT
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][id]"
+
+17
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][username]"
+
+kjkgyy67
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][name]"
+
+SymponiZM245_00127
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][phoneno]"
+
+9916225515
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][dialcode]"
+
+91
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][email]"
+
+wad@mobisy.com
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][gmail_id]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][address]"
+
+2nd A Main Vignan Nagar Bangalore
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][imei]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][employeeid]"
+
+098756
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][dateofbirth]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][designation_id]"
+
+2
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][creditlimit]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][balance]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][active]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][active]"
+
+1
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][sale]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][order]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][salereturn]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][stockatoutlet]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][collection]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][print]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][adhocads]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][addoutlet]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][activity]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][attendance]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][attendanceimage]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][collaterals]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][pop]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][claims]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][genericform]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][outletageing]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][vendorbid]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][activitypicture]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][activitycomment]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][activityform]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][outletenrollment]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][emailtoretailer]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][lms]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][readgeolocation]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][assettrack]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][orderfulfil]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][outletedit]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][tasks]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][assetorder]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][existingasset]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][reqfordiscount]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][assetaudit]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][addtask]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][emailpacreport]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][searchoutletonline]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][shownearestoutlets]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][printertype]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][primaryorder]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][primarysalereturn]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][primarycollections]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][enterskuprice]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][edituserlocvisibility]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][txnsinsinglescreen]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][enrolwithtarget]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][sampling]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][edituserinfo]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][beatplanning]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][stock_transfer]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][primaryactivityform]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][reporteeview]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][trainer]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][taskapprover]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][addevent]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][secondarygrn]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][claim_auditor]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][assetderegister]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][assetapprover]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][van_sale_with_orders]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][tertiary_sale]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][distributor_order_edit]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][return_for_retailer_app]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Userworkflow][is_smart_asset]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][0][type]"
+
+outlet_info
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][0][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][0][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][1][type]"
+
+ageing_report
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][1][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][1][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][2][type]"
+
+stock_at_outlet
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][2][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][2][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][3][type]"
+
+sale
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][3][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][3][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][4][type]"
+
+custom_form_sale
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][4][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][4][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][5][type]"
+
+order
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][5][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][5][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][6][type]"
+
+custom_form_order
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][6][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][6][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][7][type]"
+
+sale_return
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][7][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][7][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][8][type]"
+
+activity_comment
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][8][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][8][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][9][type]"
+
+activity_picture
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][9][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][9][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][10][type]"
+
+collection
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][10][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][10][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][11][type]"
+
+summary
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][11][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][11][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][12][type]"
+
+activity_form
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][12][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][12][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][13][type]"
+
+asset_audit
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][13][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][13][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][14][type]"
+
+asset_exists
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][14][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][14][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][15][type]"
+
+asset_order
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][15][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][15][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][16][type]"
+
+asset_register
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][16][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][16][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][17][type]"
+
+add_task
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][17][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][17][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][18][type]"
+
+outlet_task
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][18][compulsory]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Appcallsequence][18][sequence]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Useractivitymapnonempty]"
+
+1
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Usergenericmapnonempty]"
+
+1
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Custom][name#SingleLineText]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[Custom][image1#Image]"
+
+
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[User][Role]"
+
+7
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[roleEdited]"
+
+0
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="_method"
+
+POST
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[log][ds]"
+
+default
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[log][sql]"
+
+SELECT `Setting`.`id`, `Setting`.`name`, `Setting`.`value`, `Setting`.`setting_type` FROM `devuitest_bizomdev_in_bizom`.`settings` AS `Setting`   WHERE name = ('enableBusinessStream')
+------WebKitFormBoundary8WVOIpA0cTGfpeWB
+Content-Disposition: form-data; name="data[log][hash]"
+
+b12661bf3773df153dcb5cb8bbf59d266724637d
+------WebKitFormBoundary8WVOIpA0cTGfpeWB--

@@ -1,0 +1,17 @@
+<data>
+    <InventoryPrice>
+        <warehouseErpId>trp123</warehouseErpId>
+        <skuCode>Cuba</skuCode>
+        <mrp>71.81</mrp>
+        <price>75.81</price>
+        <toentityType>warehouses</toentityType>
+        <!-- <toentityTypeId>272</toentityTypeId> -->
+        <toentityTypeErpId>trp133</toentityTypeErpId>
+        <!-- <batchName>ABC0858</batchName> -->
+        <!-- <batchId>167</batchId>
+        <batchExpiry>31-11-2023</batchExpiry>
+        <batchManufactureDate>15-12-2022</batchManufactureDate> -->
+        <applyGst>1</applyGst>
+        <is_active>1</is_active>
+    </InventoryPrice>
+</data>

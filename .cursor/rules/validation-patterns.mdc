@@ -1,0 +1,84 @@
+---
+description: Response Validation Patterns and Common Assertions
+---
+
+# Response Validation Patterns
+
+## Common Validation Steps
+
+### Status Code Validation
+```gherkin
+Then I should see the response code as "200"
+Then I should see the response code as "401"
+Then I should see the response code as "400"
+```
+
+### Response Field Validation
+```gherkin
+And the fields in response should match with expected values
+  | JPath         | Value        |
+  | $.Result      | true         |
+  | $.error       | invalid_request |
+  | $.error_description | The access token was not found. |
+```
+
+### Response Header Validation
+```gherkin
+And verify response headers
+  | HeaderName    | HeaderValue                 |
+  | Content-Type  | text/html; charset=UTF-8    |
+  | Server        | Bizom                       |
+  | Connection    | keep-alive                  |
+```
+
+### Performance Validation
+```gherkin
+And verify response time is less than "1200" milliseconds
+And verify response time is less than "1500" milliseconds
+```
+
+## Common Validation Scenarios
+
+### Positive Test Cases
+- Status code: 200
+- Result field: true
+- Response time: < 1200ms
+- Standard headers present
+
+### Authentication Failure
+- Status code: 401
+- Error field: "invalid_request"
+- Error description: "The access token was not found."
+
+### Invalid Request
+- Status code: 400
+- Error field: "bad_request"
+- Appropriate error message
+
+### Business Logic Validation
+- Result field: false
+- Reason field: Business rule violation message
+
+## JPath Expression Patterns
+
+### Common JPath Expressions
+- `$.Result` - Boolean result field
+- `$.error` - Error code
+- `$.error_description` - Error description
+- `$.orderId` - Order ID from response
+- `$.data[0].field` - Array element access
+- `$.nested.field` - Nested object access
+
+### Response Storage Patterns
+```gherkin
+And I store the response as "orderResponse" name using full path
+And I store the response as "userData" name using xml full path
+```
+
+## Validation Best Practices
+
+1. **Always validate status codes first**
+2. **Use specific JPath expressions for field validation**
+3. **Include performance validation for critical APIs**
+4. **Validate both positive and negative scenarios**
+5. **Store responses for chained API calls**

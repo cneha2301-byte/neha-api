@@ -1,0 +1,220 @@
+---
+description: Debugging and Troubleshooting Guide for API Automation
+---
+
+# Debugging and Troubleshooting
+
+## Common Issues and Solutions
+
+### Authentication Issues
+
+#### Access Token Problems
+```gherkin
+# Problem: 401 Unauthorized
+Then I should see the response code as "401"
+And the fields in response should match with expected values
+  | JPath                   | Value           |
+  | $.error                 | invalid_request |
+  | $.error_description     | The access token was not found. |
+```
+
+**Solutions:**
+1. Check [config.properties](mdc:src/test/resources/Configurations/config.properties) for valid access token
+2. Verify token expiration and refresh mechanism
+3. Ensure proper token format in request headers
+4. Check token storage and retrieval logic
+
+#### Token Resolution
+```gherkin
+# Use dynamic token resolution
+And I post the request with "payloadName" payload with dynamic access token and query parameters
+  |Query         |Value         |
+  |access_token  |ACCESS_TOKEN  |
+```
+
+### Request/Response Issues
+
+#### Payload Problems
+```gherkin
+# Problem: 400 Bad Request
+Then I should see the response code as "400"
+And the fields in response should match with expected values
+  | JPath     | Value        |
+  | $.error   | bad_request  |
+```
+
+**Debugging Steps:**
+1. Validate JSON/XML payload structure
+2. Check required fields in payload
+3. Verify data types and formats
+4. Test payload with API testing tools (Postman)
+
+#### Response Validation Failures
+```gherkin
+# Problem: Unexpected response values
+And the fields in response should match with expected values
+  | JPath     | Value | Expected |
+  | $.Result  | false | true     |
+```
+
+**Solutions:**
+1. Check API documentation for expected response format
+2. Verify test data setup and environment state
+3. Review business logic requirements
+4. Check for API changes or updates
+
+### Environment Issues
+
+#### Base URI Configuration
+```properties
+# config.properties
+baseURI = https://devapi.bizomdev.in/
+```
+
+**Common Issues:**
+1. **Wrong Environment**: Verify correct base URI for test environment
+2. **Network Connectivity**: Check network access to API endpoints
+3. **SSL Certificates**: Ensure valid SSL certificates for HTTPS endpoints
+4. **Firewall Rules**: Verify firewall allows API access
+
+#### Database Connection Issues
+```gherkin
+Given I connect to database with connection name "testDB"
+```
+
+**Troubleshooting:**
+1. Check database credentials in configuration
+2. Verify database server accessibility
+3. Validate SQL query syntax
+4. Check database permissions for test user
+
+## Debugging Tools and Techniques
+
+### Logging and Output
+
+#### Console Output
+```java
+// Enable detailed logging in step definitions
+System.out.println("Request URL: " + requestSpec.getBaseUri());
+System.out.println("Request Headers: " + requestSpec.getHeaders());
+System.out.println("Request Body: " + requestSpec.getBody());
+```
+
+#### Response Debugging
+```gherkin
+# Store and examine response details
+And I store the response as "debugResponse" name using full path
+```
+
+### Postman Collection
+- **Collection File**: [Collections/Biszom API.postman_collection.json](mdc:Collections/Biszom API.postman_collection.json)
+- **Usage**: Test API endpoints independently before automation
+- **Benefits**: Validate request/response format, test authentication
+
+### Test Data Validation
+
+#### Payload Validation
+```json
+// Example: postAddOrders.json
+{
+  "data": {
+    "erpid": "random",
+    "order_id": "storedResponse",
+    "neworderstate_id": 2
+  }
+}
+```
+
+**Validation Checklist:**
+1. JSON syntax validation
+2. Required field presence
+3. Data type validation
+4. Business rule compliance
+
+## Performance Troubleshooting
+
+### Response Time Issues
+```gherkin
+And verify response time is less than "1200" milliseconds
+```
+
+**Common Causes:**
+1. **Network Latency**: Check network connectivity
+2. **Server Load**: Verify API server performance
+3. **Database Performance**: Check database query execution time
+4. **Test Data Size**: Review payload size and complexity
+
+### Memory Issues
+**Symptoms:**
+- OutOfMemoryError during test execution
+- Slow test execution
+- System performance degradation
+
+**Solutions:**
+1. Increase JVM heap size
+2. Optimize test data size
+3. Implement proper cleanup mechanisms
+4. Review concurrent test execution settings
+
+## Error Handling Patterns
+
+### Graceful Failure Handling
+```gherkin
+# Continue test execution despite non-critical failures
+@ContinueOnFailure
+Scenario: Test with multiple validations
+  Given I set up base URI for transactions
+  When I send the GET request to "endpoint" endpoint
+  Then I should see the response code as "200"
+  # Test continues even if this validation fails
+  And the fields in response should match with expected values
+    | JPath | Value |
+    | $.field | expected |
+```
+
+### Retry Mechanisms
+```gherkin
+# Retry failed requests
+@Retry(3)
+Scenario: Flaky API test
+  Given I set up base URI for transactions
+  When I send the GET request to "endpoint" endpoint
+  Then I should see the response code as "200"
+```
+
+## Debugging Best Practices
+
+### Test Isolation
+1. **Independent Test Data**: Each test should use unique data
+2. **Cleanup Procedures**: Implement proper test data cleanup
+3. **Environment Reset**: Reset environment state between tests
+4. **Parallel Safety**: Ensure tests can run in parallel
+
+### Documentation
+1. **Error Scenarios**: Document common error scenarios and solutions
+2. **Troubleshooting Guide**: Maintain up-to-date troubleshooting documentation
+3. **API Changes**: Track and document API changes affecting tests
+4. **Environment Setup**: Document environment setup and configuration
+
+### Monitoring and Alerting
+1. **Test Execution Monitoring**: Monitor test execution success rates
+2. **Performance Tracking**: Track API response times and trends
+3. **Error Rate Monitoring**: Monitor and alert on increased error rates
+4. **Environment Health**: Monitor API endpoint availability and performance
+
+## Common Error Messages and Solutions
+
+### Authentication Errors
+- **"The access token was not found"**: Check token configuration and format
+- **"Invalid token"**: Verify token validity and expiration
+- **"Unauthorized"**: Check user permissions and API access rights
+
+### Request Errors
+- **"Bad Request"**: Validate request payload and parameters
+- **"Not Found"**: Verify endpoint URL and resource existence
+- **"Method Not Allowed"**: Check HTTP method for endpoint
+
+### Response Errors
+- **"Internal Server Error"**: Check API server logs and configuration
+- **"Service Unavailable"**: Verify API service availability
+- **"Timeout"**: Check network connectivity and server response time

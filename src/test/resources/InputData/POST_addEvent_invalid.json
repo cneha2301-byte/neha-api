@@ -1,0 +1,26 @@
+{
+  "Taskdetail": {
+    "description": "",
+    "extradata": [],
+    "task_id": "invalid",
+    "location_id": "abc",
+    "outlet_id": "xyz",
+    "tag_source": "",
+    "remark": "",
+    "start_time": "invalid",
+    "locationoutlet_id": "invalid",
+    "start_date": "invalid-date",
+    "end_time": "invalid",
+    "end_date": "invalid-date"
+  },
+  "Activityformdata": {
+    "activityformfield_id": "invalid",
+    "user_id": "abc",
+    "activity_type": "invalid"
+  },
+  "Taskassignee": {},
+  "Task": {
+    "id": "invalid"
+  }
+}
+

@@ -1,0 +1,36 @@
+{
+  "data": {
+    "Skunit": {
+      "name": "",
+      "mrp": "",
+      "gst": "",
+      "hsncode": "",
+      "price": "",
+      "unitspercase": "",
+      "abbr": "",
+      "skucode": "",
+      "description": "",
+      "unitcase": "",
+      "standardcase": "",
+      "brand_id": "",
+      "subbrand_id": "",
+      "packaging_id": "",
+      "size_id": "",
+      "category_id": "",
+      "expiry_timeline": "",
+      "isuniqueserialnumber": "",
+      "is_promosku": "",
+      "fordevice": "",
+      "focussku": "",
+      "package_size": "",
+      "gstSlabs": [
+        {
+          "fromAmount": "",
+          "toAmount": "",
+          "gst": ""
+        }
+      ]
+    }
+  }
+}
+

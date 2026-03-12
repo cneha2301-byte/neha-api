@@ -1,0 +1,12 @@
+{
+  "data": {
+    "Inventorytype": {
+      "name": "test_inventory_type",
+      "name_alias": "test_alias",
+      "parent_id": "2",
+      "is_active": "1",
+      "iseditable": "1"
+    }
+  }
+}
+

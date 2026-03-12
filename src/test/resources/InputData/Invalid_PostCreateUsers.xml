@@ -1,0 +1,21 @@
+<User>
+    <username/>
+    <employeeid>lion1</employeeid>
+    <password>mobisy</password>
+    <name>lion12</name>
+    <Role>3</Role>
+    <Rolespecificid>2</Rolespecificid>
+    <email>anilkumar.mundawad@mobisy.com</email>
+    <phoneno>9916225512</phoneno>
+    <address>2nd A Main Vignan Nagar Bangalore</address>
+    <balance>0</balance>
+    <creditlimit>0</creditlimit>
+    <active>1</active>
+    <reportingto>2</reportingto>
+    <reportingtoemployeeid/>
+    <designation_id>1</designation_id>
+    <designation_erpid/>
+    <headquarter_id>1</headquarter_id>
+    <isrolespecificid>1</isrolespecificid>
+    <state_id>16</state_id>
+</User>

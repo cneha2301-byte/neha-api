@@ -1,0 +1,173 @@
+---
+globs: *.json,*.xml
+description: Test Data File Patterns and Conventions
+---
+
+# Test Data File Patterns
+
+## Test Data Location
+All test data files are stored in [src/test/resources/InputData/](mdc:src/test/resources/InputData/).
+
+## File Naming Conventions
+
+### Payload File Naming Rules
+**CRITICAL**: Payload file names MUST match the switch case values in `ResourceURIS.java` exactly.
+
+### Current Endpoint Payloads (Based on ResourceURIS.java)
+
+#### JSON Payloads
+- `postAddOrders.json` - Order creation payload
+- `postUploadPjp.json` - PJP upload payload
+- `postCreateUsers.json` - User creation payload
+- `postAddCreditNote.json` - Credit note creation payload
+
+#### XML Payloads
+- `config_user.xml` - User authentication configuration payload
+- `postAddoutlet.xml` - Outlet creation payload
+- `postCreateUsers.xml` - User creation payload (XML format)
+- `postEditUser.xml` - User edit payload
+- `applyLeave.xml` - Leave application payload
+
+### Naming Convention Standards
+- **File Name**: Must exactly match the switch case value in `ResourceURIS.getResourceURI()`
+- **File Extension**: `.json` for JSON payloads, `.xml` for XML payloads
+- **Case Sensitivity**: Exact match required (lowercase with underscores)
+- **No Prefixes**: Do not use prefixes like `post`, `get`, `PUT_`, etc.
+
+### Examples of Correct Naming
+```java
+// ResourceURIS.java switch cases
+case "postAddOrders":     → postAddOrders.json
+case "postUploadPjp":     → postUploadPjp.json
+case "postCreateUsers":   → postCreateUsers.xml
+case "applyLeave":        → applyLeave.xml
+case "postAddoutlet":     → postAddoutlet.xml
+```
+
+## Common Payload Patterns
+
+### Order API Payloads
+```json
+{
+  "data": {
+    "erpid": "random",
+    "order_id": "storedResponse",
+    "neworderstate_id": 2
+  }
+}
+```
+
+### User API Payloads
+```json
+{
+  "user_id": "storedResponse",
+  "name": "Test User",
+  "email": "test@example.com"
+}
+```
+
+### Dynamic Field Resolution
+- Use `random` for random value generation
+- Use `storedResponse` to reference values from previous API responses
+- Use JPath expressions for nested field access
+
+## Payload Modification Patterns
+
+### Random Value Generation
+```gherkin
+And I modify fields with random values and remove fields in "zones_add" payload
+  |JPath                      |Value            |
+  |$.data.erpid               |random           |
+```
+
+### Stored Response Integration
+```gherkin
+And I modify the field with values from stored response "responseName" and from datatable in "zones_add" payload
+  |JPath             |Value                      |ResponseJPath|
+  |$.order_id        |storedResponse             |$.orderId    |
+```
+
+### Database Integration
+```gherkin
+And I modify fields with random values and remove fields in "zones_add" payload
+  |JPath         | Value                                           |
+  |$.userId      | randomSmallInt                                  |
+  |$.userName    | DB:users:name: id=101                           |
+  |$.phoneNumber | randomPhoneNumber                               |
+  |$.createdDate | todayDate                                       |
+  |$.expiryDate  | futureDate:30                                   |
+```
+
+### Payload Name Reference
+When referencing payload files in step definitions, use the exact switch case name from ResourceURIS.java:
+- `"postAddOrders"` - for postAddOrders.json
+- `"postUploadPjp"` - for postUploadPjp.json
+- `"postCreateUsers"` - for postCreateUsers.xml
+- `"applyLeave"` - for applyLeave.xml
+- `"postAddoutlet"` - for postAddoutlet.xml
+
+## Adding New Endpoints
+
+### Step-by-Step Process
+When adding a new endpoint, follow this sequence:
+
+1. **Add to ResourceURIS.java**:
+   ```java
+   // Add constant
+   private static final String new_endpoint = "/api/new-endpoint";
+   
+   // Add to switch case
+   case "new_endpoint":
+       return new_endpoint;
+   ```
+
+2. **Create Payload Files**:
+   ```bash
+   # Create JSON payload
+   touch src/test/resources/InputData/new_endpoint.json
+   
+   # Create XML payload (if needed)
+   touch src/test/resources/InputData/new_endpoint.xml
+   ```
+
+3. **Use in Feature Files**:
+   ```gherkin
+   When I modify fields with random values and remove fields in "new_endpoint" payload
+   ```
+
+### Naming Validation
+Before creating payload files, verify the name matches ResourceURIS.java:
+- ✅ `"new_endpoint"` matches `case "new_endpoint":`
+- ❌ `"postNewEndpoint"` does not match ResourceURIS switch case
+- ❌ `"POST_NewEndpoint"` does not match ResourceURIS switch case
+
+## Configuration Files
+
+### Properties Configuration
+[src/test/resources/Configurations/config.properties](mdc:src/test/resources/Configurations/config.properties) contains:
+- Base URI configuration
+- Database connection settings
+- Test environment settings
+
+### XML Configuration
+[src/test/resources/InputData/config_user.xml](mdc:src/test/resources/InputData/config_user.xml) for user authentication configuration.
+
+## Best Practices
+
+### File Organization
+- Keep payload files in `src/test/resources/InputData/`
+- Use consistent naming that matches ResourceURIS.java
+- Separate JSON and XML payloads for the same endpoint
+- Include descriptive comments in payload files
+
+### Naming Consistency
+- Always check ResourceURIS.java before creating new payload files
+- Use lowercase with underscores (snake_case)
+- Avoid HTTP method prefixes (post, get, put, delete)
+- Avoid case variations (POST_, Get_, etc.)
+
+### Maintenance
+- Update ResourceURIS.java first when adding new endpoints
+- Create payload files with matching names
+- Update documentation to reflect new payload files
+- Validate naming consistency across the project

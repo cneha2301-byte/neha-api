@@ -1,0 +1,18 @@
+{
+  "loadouts": [
+    {
+      "id": "1",
+      "cases": "1",
+      "units": "0",
+      "quantity": "75",
+      "batch_id": "0",
+      "user_id": "4",
+      "is_batch_enabled": "0",
+      "skunit_id": "3",
+      "warehouse_id": "4",
+      "total_loadout_quantity": "75"
+    }
+  ],
+  "fordate": "2025-11-17"
+}
+

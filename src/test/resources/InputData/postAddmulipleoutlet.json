@@ -1,0 +1,48 @@
+{
+        "Outlets": [
+        {
+        "Outlet": {
+        "erp_id": "outlet1",
+        "name": "outlet001",
+        "address": "Sarjapur",
+        "city_id": "1",
+        "state_id": "1",
+        "email": "abc@abc.com",
+        "type": "outlet",
+        "gstinno": "29ABCDE1234F1Z5",
+        "cstno": "CST1234567",
+        "ownername": "ABC Enterprises",
+        "ownermobile": "",
+        "pin": "560037",
+        "balance": "1000",
+        "isdistributor": "0",
+        "area_erpid": "test",
+        "#text": "or",
+        "code": "324213423saf",
+        "taxno": "46465656y"
+        }
+        },
+        {
+        "Outlet": {
+        "erp_id": "outlet0026",
+        "name": "outlet0022",
+        "address": "Sarjapur",
+        "city_id": "1",
+        "state_id": "1",
+        "email": "abc@abc.com",
+        "type": "outlet",
+        "gstinno": "29ABCDE1234F1Z5",
+        "cstno": "CST1234567",
+        "ownername": "ABC Enterprises",
+        "ownermobile": "",
+        "pin": "560037",
+        "balance": "1000",
+        "isdistributor": "0",
+        "area_erpid": "test",
+        "#text": "or",
+        "code": "324213423saf",
+        "taxno": "46465656"
+        }
+        }
+        ]
+        }

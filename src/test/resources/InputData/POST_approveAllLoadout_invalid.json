@@ -1,0 +1,18 @@
+{
+  "loadouts": [
+    {
+      "id": "abc",
+      "cases": "invalid",
+      "units": "invalid",
+      "quantity": "invalid",
+      "batch_id": "abc",
+      "user_id": "xyz",
+      "is_batch_enabled": "invalid",
+      "skunit_id": "abc",
+      "warehouse_id": "xyz",
+      "total_loadout_quantity": "invalid"
+    }
+  ],
+  "fordate": "invalid-date"
+}
+

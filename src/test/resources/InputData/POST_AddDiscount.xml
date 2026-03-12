@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Discounts>
+  <Discount>
+    <discountpercent>20</discountpercent>
+    <skucodes>
+      <skucode>gold1234</skucode>
+      <skucode>12233</skucode>
+      <skucode>1122333</skucode>
+    </skucodes>
+    <fromlevelname>zone</fromlevelname>
+    <fromlevelerpid>north1</fromlevelerpid>
+    <tolevelname>warehouse</tolevelname>
+    <tolevelerpid>1</tolevelerpid>
+    <isactive>1</isactive>
+    <fromdate>2025-09-22</fromdate>
+    <todate>2025-10-11</todate>
+    <min_discount>10</min_discount>
+    <max_discount>20</max_discount>
+  </Discount>
+</Discounts>

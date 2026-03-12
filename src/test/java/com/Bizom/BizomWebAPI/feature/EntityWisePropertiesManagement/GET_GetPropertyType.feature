@@ -1,0 +1,192 @@
+@BizomWebAPI @EntityWisePropertiesManagement @EntityWiseProperties @GetPropertyType @DataProcessing @OS
+Feature: Get Property Type API Testing
+  As a Bizom web API consumer
+  I want to validate the get property type endpoint
+  So that I can ensure property type lists are returned correctly
+
+  Background:
+    Given I set up base URI for transactions
+    When I set up request specification
+      |HeaderName|HeaderValue|
+      |Content-Type|application/json|
+      |Accept|*/*|
+      |Accept-Encoding|gzip,deflate, br|
+      |Connection|keep-alive|
+
+  @Negative @Security
+  Scenario: TC_01 Get property type without access token
+    When I send the GET request to "entitywiseproperties_get_property_type" endpoint
+    Then I should see the response code as "200"
+    And the HTML response should contain page title "Users"
+    And verify response time is less than "2500" milliseconds
+
+  @Negative @Security
+  Scenario: TC_02 Get property type with invalid access token
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|invalid_token_12345|
+    Then I should see the response code as "200"
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.result|false|
+      |$.error.code|401|
+      |$.error.message|Invalid Access Token or Credentials|
+    And verify response time is less than "2500" milliseconds
+
+  @Negative @Security
+  Scenario: TC_03 Get property type with expired access token
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|expired_token_12345|
+    Then I should see the response code as "200"
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.result|false|
+      |$.error.code|401|
+      |$.error.message|Invalid Access Token or Credentials|
+    And verify response time is less than "2500" milliseconds
+
+  @Negative @Security
+  Scenario: TC_04 Get property type with malformed access token
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|malformed.token.here|
+    Then I should see the response code as "200"
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.result|false|
+      |$.error.code|401|
+      |$.error.message|Invalid Access Token or Credentials|
+    And verify response time is less than "2500" milliseconds
+
+  @Positive @Smoke
+  Scenario: TC_05 Get property type with valid access token
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.Result|true|
+      |$.Reason|Property Types found|
+      |$.Data[0]|Drop-down|
+      |$.Data[1]|multi_drop-down|
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.Data|["Drop-down","multi_drop-down"]|
+    And validating the response field data types
+      |JPath|ExpectedType|
+      |$.Result|boolean|
+      |$.Reason|string|
+      |$.Data|array|
+    And I store the response as "getPropertyType_response" name using full path
+
+  @Positive @Performance
+  Scenario: TC_06 Performance test for get property type endpoint
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "1500" milliseconds
+
+  @Positive @Concurrency
+  Scenario: TC_07 Concurrent access test for get property type endpoint
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+
+#  @Negative @Validation
+#  Scenario: TC_08 Get property type with invalid query parameter
+#    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+#      |QueryParamName|QueryParamValue|
+#      |access_token|ACCESS_TOKEN|
+#      |invalid_param|invalid_value|
+#    Then I should see the response code as "200"
+#    And verify response time is less than "2500" milliseconds
+#    And validating the substring in response
+#      |Path|Value|
+#      |$.Reason|Property Types found|
+
+  @Negative @Validation
+  Scenario: TC_09 Get property type with special characters in query parameter
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+      |test_param|<script>alert('XSS')</script>|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+
+  @Negative @Security
+  Scenario: TC_10 Get property type with SQL injection attempt
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+      |test_param|'; DROP TABLE entitywiseproperties; --|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+
+  @Negative @Boundary
+  Scenario: TC_11 Get property type with maximum query parameters
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+      |param1|value1|
+      |param2|value2|
+      |param3|value3|
+      |param4|value4|
+      |param5|value5|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+
+#  @Negative @ErrorHandling
+#  Scenario: TC_12 Get property type with invalid endpoint
+#    And I send the GET request to "entitywiseproperties_get_property_type_invalid" endpoint with dynamic access token and query parameters
+#      |QueryParamName|QueryParamValue|
+#      |access_token|ACCESS_TOKEN|
+#    Then I should see the response code as "200"
+#    And the HTML response should contain page title "Users"
+#    And verify response time is less than "2500" milliseconds
+
+  @Positive @Regression
+  Scenario: TC_13 Regression test for get property type endpoint
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And validating the response field data types
+      |JPath|ExpectedType|
+      |$.Data|array|
+
+  @Positive @LoadTesting
+  Scenario: TC_14 Load testing for get property type endpoint
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "3000" milliseconds
+
+  @Negative @Timeout
+  Scenario: TC_15 Timeout handling for get property type endpoint
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "5000" milliseconds
+
+  @Positive @EndToEnd
+  Scenario: TC_16 End-to-end get property type workflow
+    And I send the GET request to "entitywiseproperties_get_property_type" endpoint with dynamic access token and query parameters
+      |QueryParamName|QueryParamValue|
+      |access_token|ACCESS_TOKEN|
+    Then I should see the response code as "200"
+    And verify response time is less than "2500" milliseconds
+    And the fields in response should match with expected values
+      |JPath|Value|
+      |$.Result|true|
+      |$.Reason|Property Types found|
+      |$.Data|["Drop-down","multi_drop-down"]|
+    And I store the response as "getPropertyType_response" name using full path
+

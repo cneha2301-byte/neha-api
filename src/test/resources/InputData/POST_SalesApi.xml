@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sales>
+    <sale>
+        <payment>
+            <order_id></order_id>
+            <invoiceid>460238</invoiceid>
+            <paymentErpId>40977</paymentErpId>
+            <outlet_erp_id/>
+            <outlet_id></outlet_id>
+            <shippingoutlet_id/>
+            <shippingoutlet_erp_id/>
+            <from_warehouse_id></from_warehouse_id>
+            <from_warehouse_erpid></from_warehouse_erpid>
+            <amount>4800</amount>
+            <mode>cash</mode>
+            <tcs_amount>10</tcs_amount>
+            <fordate>2025-10-28</fordate>
+            <employee_id>1211</employee_id>
+            <partialfulfil>0</partialfulfil>
+        </payment>
+        <paymentdetail>
+            <skunit_erp_id>6</skunit_erp_id>
+            <quantity>4.00</quantity>
+            <quantityincases>0.00</quantityincases>
+            <status>purchased</status>
+            <discount_type>percent</discount_type>
+            <discount>0</discount>
+            <discountTotalValue>0.00</discountTotalValue>
+            <schemediscount>0.00</schemediscount>
+            <batchname/>
+            <manufactureDate/>
+            <expiryDate/>
+            <amount>4800</amount>
+            <is_free>0</is_free>
+        </paymentdetail>
+    </sale>
+</sales>

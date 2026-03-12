@@ -1,0 +1,68 @@
+---
+globs: *.feature
+description: Cucumber Feature File Patterns and Conventions
+---
+
+# Cucumber Feature File Patterns
+
+## Feature File Structure
+
+### Standard Feature Template
+```gherkin
+@ModuleName @Sanity @All @allGet/@allPost @Execution
+Feature: This feature file contains testcases for {HTTP_METHOD} endpoint {API_NAME}
+
+  @PositiveScenario
+  Scenario: TC_01 {API_NAME} - status code positive case
+    Given I set up base URI for transactions
+    When I set up request specification
+      |HeaderName|HeaderValue|
+      |Content-Type|application/json|
+      |Accept|*/*|
+      |Accept-Encoding|gzip,deflate, br|
+      |Connection|keep-alive|
+    And I {action} the request with "{payloadName}" payload with dynamic access token and query parameters
+      |Query         |Value         |
+      |access_token  |ACCESS_TOKEN  |
+    Then I should see the response code as "200"
+    And the fields in response should match with expected values
+      | JPath     | Value |
+      | $.Result  | true  |
+    And verify response headers
+      | HeaderName    | HeaderValue                 |
+      | Content-Type  | text/html; charset=UTF-8    |
+      | Server        | Bizom                       |
+      | Connection    | keep-alive                  |
+    And verify response time is less than "1200" milliseconds
+    And I store the response as "{responseName}" name using full path
+```
+
+## Common Step Patterns
+
+### Request Setup
+- `Given I set up base URI for transactions`
+- `When I set up request specification` with header table
+- `And I send the GET/POST request to "{endpoint}" endpoint`
+
+### Authentication
+- `And I send the GET/POST request to "{endpoint}" endpoint with dynamic access token, path and query parameters`
+- Use `ACCESS_TOKEN` as query parameter value for dynamic token resolution
+
+### Response Validation
+- `Then I should see the response code as "{statusCode}"`
+- `And the fields in response should match with expected values` with JPath table
+- `And verify response headers` with expected headers table
+- `And verify response time is less than "{time}" milliseconds`
+
+### Data Storage
+- `And I store the response as "{name}" name using full path`
+
+## Tagging Conventions
+- `@BizomWebAPI` - BizomWebAPI suite tests
+- `@Execution` - IntegrationAPI and RetailerAPI suite tests
+- `@ModuleName` - API module (Users, Orders, Sales, etc.)
+- `@Sanity` - Sanity test scenarios
+- `@allGet` - GET request scenarios
+- `@allPost` - POST request scenarios
+- `@PositiveScenario` - Positive test cases
+- `@NegativeScenario` - Negative test cases

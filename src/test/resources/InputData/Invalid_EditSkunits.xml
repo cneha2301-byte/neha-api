@@ -1,0 +1,49 @@
+<Skunit>
+    <id>800</id>
+    <name>SKU0861</name>
+    <skucode>ABC0861</skucode>
+    <mrp>59</mrp>
+    <price>69.62</price>
+    <vat>0</vat>
+    <unitcase>1</unitcase>
+    <unitspercase></unitspercase>
+    <category>Cat13</category>
+    <category_erpid>CT13</category_erpid>
+    <subcategory>SubCat13</subcategory>
+    <subcategory_erpid>SBC15</subcategory_erpid>
+    <brand>Brand1</brand>
+    <brand_erpid>BR1</brand_erpid>
+    <subbrand>SubBrand1</subbrand>
+    <subbrand_erpid>SBR1</subbrand_erpid>
+    <variant>Variant11</variant>
+    <variant_erpid>V11</variant_erpid>
+    <packaging>Package8</packaging>
+    <packaging_erpid>P8</packaging_erpid>
+    <subpack>Sub Pack1</subpack>
+    <subpack_erpid>SP1</subpack_erpid>
+    <!-- <size>7500</size> -->
+    <size_erpid>S16</size_erpid>
+    <servesize></servesize>
+    <servesize_erpid></servesize_erpid>
+    <unit>KG_002</unit>
+    <unit_erpid>U4</unit_erpid>
+    <focussku>0</focussku>
+    <description></description>
+    <fordevice>1</fordevice>
+    <active>1</active>
+    <standardcase>1</standardcase>
+    <freesku_id>1</freesku_id>
+    <freeskuquantity></freeskuquantity>
+    <erp_group_id></erp_group_id>
+    <erpgroup_erpid></erpgroup_erpid>
+    <businesstype></businesstype>
+    <businesstype_erpid></businesstype_erpid>
+    <gst>18</gst>
+    <cess></cess>
+    <hsncode>39174000</hsncode>
+    <customformdata>
+        <dropDown1_DropDown>2</dropDown1_DropDown>
+        <checkbox1_CheckBox1>2</checkbox1_CheckBox1>
+        <radioButton1_RadioButton1>2</radioButton1_RadioButton1>
+    </customformdata>
+</Skunit>

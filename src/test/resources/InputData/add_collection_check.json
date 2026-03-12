@@ -1,0 +1,15 @@
+[
+  {
+    "warehouse_erp_id": "trp123",
+    "outlet_erp_id": "erp123",
+    "amount": "10000",
+    "fordate": "2025-07-10",
+    "mode": "check",
+    "transaction_id": "649900071611565966",
+    "Check": {
+      "checkno": "11213",
+      "bankname": "Syndicate",
+      "checkdate": "2025-07-15"
+    }
+  }
+]

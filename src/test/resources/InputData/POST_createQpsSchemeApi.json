@@ -1,0 +1,80 @@
+{
+  "0": {
+    "Scheme": {
+      "name": "QPS1",
+      "erp_id": "",
+      "foramount": "",
+      "forquantity": "10",
+      "endrange": "49",
+      "discountpercent": "5.00",
+      "loyaltypoint": "",
+      "maxloyalty": "",
+      "cashbackstartday": "",
+      "cashbackendday": "",
+      "pointtype": "",
+      "maxcash": "",
+      "startdate": "2025-08-29",
+      "enddate": "2025-09-30",
+      "description": ""
+    }
+  },
+  "1": {
+    "Scheme": {
+      "name": "QPS2",
+      "erp_id": "",
+      "foramount": "",
+      "forquantity": "50",
+      "endrange": "149",
+      "discountpercent": "8.00",
+      "loyaltypoint": "",
+      "maxloyalty": "",
+      "cashbackstartday": "",
+      "cashbackendday": "",
+      "pointtype": "",
+      "maxcash": "",
+      "startdate": "2025-08-29",
+      "enddate": "2025-09-30",
+      "description": ""
+    }
+  },
+  "2": {
+    "Scheme": {
+      "name": "QPS3",
+      "erp_id": "",
+      "foramount": "",
+      "forquantity": "150",
+      "endrange": "999999",
+      "discountpercent": "10.00",
+      "loyaltypoint": "",
+      "maxloyalty": "",
+      "cashbackstartday": "",
+      "cashbackendday": "",
+      "pointtype": "",
+      "maxcash": "",
+      "startdate": "2025-08-29",
+      "enddate": "2025-09-30",
+      "description": ""
+    }
+  },
+  "group": {
+    "Scheme": {
+      "type": "qpsquantity",
+      "applyon": "unit",
+      "applytype": "prorated",
+      "name": "TestQPSSchemeAPI3",
+      "erp_id": "",
+      "entity_type": "skunits",
+      "startdate": "2025-08-29",
+      "enddate": "2025-09-30",
+      "groupcases": "",
+      "externalsettlement": "1",
+      "skunit_erpid": [
+        "gold1234",
+        "12233"
+      ],
+      "bufferday":0,
+      "source" : "all",
+      "id": ""
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "_token": "",
+  "_method": "POST",
+  "data": {
+    "Skunit": {
+      "category_id": [],
+      "skunit_id": [],
+      "zone": [],
+      "distributor_id": [],
+      "changetype": "",
+      "changevalue": "",
+      "unitcase": []
+    }
+  }
+}
+

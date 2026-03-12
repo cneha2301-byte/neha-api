@@ -1,0 +1,15 @@
+<User>
+    <username>hjvsh</username>
+    <password>mobisy007</password>
+    <name>hjjkk</name>
+    <employeeid>6788</employeeid>
+    <Role>5</Role>
+    <Rolespecificid>0</Rolespecificid>
+    <email>vasu@abc.com</email>
+    <phoneno>9902327756</phoneno>
+    <balance>1</balance>
+    <creditlimit>0</creditlimit>
+    <active>1</active>
+    <reportingto /> OR
+    <reportingtoemployeeid />
+</User>

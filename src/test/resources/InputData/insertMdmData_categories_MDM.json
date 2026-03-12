@@ -1,0 +1,35 @@
+{
+  "transactionid": "wx30njy40k",
+  "data": [
+    {
+      "name": "",
+      "company_id": "",
+      "category_id": "",
+      "is_active": "",
+      "status": "",
+      "special": "",
+      "type": "",
+      "category_sequence": "",
+      "isvisible_retailer": "",
+      "disable_purchase_limit": "",
+      "erp_id": "",
+      "imageurl": "",
+      "is_image_mandatory": ""
+    },
+    {
+      "name": "",
+      "company_id": "",
+      "category_id": "",
+      "is_active": "",
+      "status": "",
+      "special": "",
+      "type": "",
+      "category_sequence": "",
+      "isvisible_retailer": "",
+      "disable_purchase_limit": "",
+      "erp_id": "",
+      "imageurl": "",
+      "is_image_mandatory": ""
+    }
+  ]
+}

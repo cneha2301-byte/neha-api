@@ -1,0 +1,77 @@
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="_method"
+
+POST
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][username]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][passwd]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][name]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][phoneno]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][dialcode]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][email]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][gmail_id]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][creditlimit]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][address]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][imei]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][designation_id]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][employeeid]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][dateofbirth]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[Custom][name#SingleLineText]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[Custom][image1#Image]"; filename=""
+Content-Type: application/octet-stream
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][Role]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][Rolespecificid][]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[User][reportingto]"
+
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="_method"
+
+POST
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[log][ds]"
+
+default
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[log][sql]"
+
+SELECT `Setting`.`id`, `Setting`.`name`, `Setting`.`value`, `Setting`.`setting_type` FROM `devuitest_bizomdev_in_bizom`.`settings` AS `Setting`   WHERE name = ('enableBusinessStream')
+------WebKitFormBoundary3cMLXW8arL0prVjm
+Content-Disposition: form-data; name="data[log][hash]"
+
+b12661bf3773df153dcb5cb8bbf59d266724637d
+------WebKitFormBoundary3cMLXW8arL0prVjm--
+

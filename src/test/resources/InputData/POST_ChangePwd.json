@@ -1,0 +1,10 @@
+{
+  "data": {
+    "User": {
+      "userID": "",
+      "password": "",
+      "passwordconfirm": ""
+    }
+  }
+}
+

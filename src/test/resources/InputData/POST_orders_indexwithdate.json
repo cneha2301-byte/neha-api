@@ -1,0 +1,43 @@
+{
+  "draw": "1",
+  "columns": [
+    {
+      "data": "order_Id",
+      "name": "",
+      "searchable": "true",
+      "orderable": "true",
+      "search": {
+        "value": "",
+        "regex": "false"
+      }
+    }
+  ],
+  "order": [
+    {
+      "column": "1",
+      "dir": "desc"
+    }
+  ],
+  "start": "0",
+  "length": "10",
+  "search": {
+    "value": "",
+    "regex": "false"
+  },
+  "orderState": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+  ],
+  "emptyorder": "0",
+  "ordertypefilter": "1",
+  "ordertype": "all",
+  "showMyOrder": "0",
+  "warehouseIds": "1",
+  "order_classificationfilter": "all",
+  "isInitialOrderFetch": "0"
+}
+

@@ -1,0 +1,9 @@
+_token: w6iwBbR4Z4rgI4h9qoiuzXtqOJ1WDQ7QUfeOcZff
+data[Category][id]: 1
+data[Category][name]: Juice
+data[Category][erp_id]: 123mnh
+data[Category][category_sequence]: 0
+data[Category][status]: 1
+data[Category][special]: 0
+data[Category][is_active]: 1
+data[Category][imageurl]: https://s3-ap-southeast-1.amazonaws.com/bizomtmpfiles/470212/4702121_392f4f80parle.jpg

@@ -1,0 +1,393 @@
+---
+globs: *.yml,*.yaml,Dockerfile,*.sh,*.bat
+description: CI/CD and Automation Patterns for API Testing
+---
+
+# CI/CD and Automation Patterns
+
+## Continuous Integration Setup
+
+### Maven Build Pipeline
+```bash
+# Clean build
+mvn clean compile test-compile
+
+# Run tests with specific tags
+mvn test -Dcucumber.filter.tags="@Sanity"
+
+# Generate reports
+mvn verify
+
+# Package application
+mvn package
+```
+
+### Test Execution Strategies
+
+#### Suite-Based Execution
+```bash
+# BizomWebAPI suite
+mvn test -Dcucumber.filter.tags="@BizomWebAPI"
+
+# IntegrationAPI suite
+mvn test -Dcucumber.filter.tags="@Execution"
+
+# Specific module within IntegrationAPI
+mvn test -Dcucumber.filter.tags="@Execution and @Orders"
+
+# Development environment - Quick feedback
+mvn test -Dcucumber.filter.tags="@Sanity"
+
+# Staging environment - Full regression
+mvn test -Dcucumber.filter.tags="@All"
+
+# Production validation - Critical paths only
+mvn test -Dcucumber.filter.tags="@Critical"
+```
+
+#### Environment-Specific Execution
+```bash
+# Set environment properties for different suites
+# BizomWebAPI suite
+mvn test -Dtest.environment=dev -DbizomWebApiBaseUri=https://devuitest.bizomdev.in/
+
+# IntegrationAPI suite
+mvn test -Dtest.environment=dev -DintegrationApiBaseUri=https://devapi.bizomdev.in/
+
+# RetailerAPI suite
+mvn test -Dtest.environment=dev -DretailerApiBaseUri=https://retailerapi.bizomdev.in/
+
+# Legacy environment setup
+mvn test -Dtest.environment=dev -DbaseURI=https://devapi.bizomdev.in/
+mvn test -Dtest.environment=staging -DbaseURI=https://stagingapi.bizomdev.in/
+mvn test -Dtest.environment=prod -DbaseURI=https://api.bizomdev.in/
+```
+
+## Docker Integration
+
+### Test Container Setup
+```dockerfile
+FROM openjdk:21-jdk-slim
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
+
+# Set working directory
+WORKDIR /app
+
+# Copy project files
+COPY . .
+
+# Install dependencies
+RUN mvn dependency:resolve
+
+# Default command
+CMD ["mvn", "test"]
+```
+
+### Docker Compose for Test Environment
+```yaml
+version: '3.8'
+services:
+  api-tests:
+    build: .
+    environment:
+      - TEST_ENVIRONMENT=integration
+      - BASE_URI=http://api-service:8080
+    volumes:
+      - ./reports:/app/target/reports
+    depends_on:
+      - api-service
+      - database
+
+  api-service:
+    image: bizom/api-service:latest
+    ports:
+      - "8080:8080"
+
+  database:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=testdb
+```
+
+## GitHub Actions Workflow
+
+### API Test Pipeline
+```yaml
+name: API Automation Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        environment: [dev, staging]
+        
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 21
+      uses: actions/setup-java@v3
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        
+    - name: Run API tests
+      run: mvn test -Dtest.environment=${{ matrix.environment }}
+      env:
+        BASE_URI: ${{ matrix.environment == 'dev' && 'https://devapi.bizomdev.in/' || 'https://stagingapi.bizomdev.in/' }}
+        
+    - name: Generate reports
+      run: mvn verify
+      
+    - name: Upload test reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-reports-${{ matrix.environment }}
+        path: target/
+```
+
+## Jenkins Pipeline
+
+### Declarative Pipeline
+```groovy
+pipeline {
+    agent any
+    
+    parameters {
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['dev', 'staging', 'prod'],
+            description: 'Target environment'
+        )
+        string(
+            name: 'TAGS',
+            defaultValue: '@Sanity',
+            description: 'Cucumber tags to run'
+        )
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile test-compile'
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh "mvn test -Dcucumber.filter.tags='${params.TAGS}' -Dtest.environment=${params.ENVIRONMENT}"
+            }
+            post {
+                always {
+                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll: true,
+                        reportDir: 'target/cucumber-report-html',
+                        reportFiles: 'cucumber-html-reports.html',
+                        reportName: 'Cucumber Report'
+                    ])
+                }
+            }
+        }
+        
+        stage('Generate Reports') {
+            steps {
+                sh 'mvn verify'
+            }
+        }
+    }
+    
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/**/*', fingerprint: true
+        }
+        failure {
+            emailext (
+                subject: "API Tests Failed - ${env.JOB_NAME} - ${env.BUILD_NUMBER}",
+                body: "API tests failed for environment: ${params.ENVIRONMENT}",
+                to: "team@bizom.com"
+            )
+        }
+    }
+}
+```
+
+## Test Data Management
+
+### Environment-Specific Configuration
+```properties
+# config-dev.properties
+# Multi-suite base URIs
+bizomWebApiBaseUri=https://devuitest.bizomdev.in/
+integrationApiBaseUri=https://devapi.bizomdev.in/
+retailerApiBaseUri=https://devretailerapi.bizomdev.in/
+
+# Legacy configuration
+baseURI = https://devapi.bizomdev.in/
+accesstoken = dev_token_here
+database.url = jdbc:mysql://dev-db:3306/testdb
+
+# config-staging.properties
+bizomWebApiBaseUri=https://staginguitest.bizomdev.in/
+integrationApiBaseUri=https://stagingapi.bizomdev.in/
+retailerApiBaseUri=https://stagingretailerapi.bizomdev.in/
+
+baseURI = https://stagingapi.bizomdev.in/
+accesstoken = staging_token_here
+database.url = jdbc:mysql://staging-db:3306/testdb
+
+# config-prod.properties
+bizomWebApiBaseUri=https://uitest.bizomdev.in/
+integrationApiBaseUri=https://api.bizomdev.in/
+retailerApiBaseUri=https://retailerapi.bizomdev.in/
+
+baseURI = https://api.bizomdev.in/
+accesstoken = prod_token_here
+database.url = jdbc:mysql://prod-db:3306/testdb
+```
+
+### Test Data Cleanup
+```bash
+#!/bin/bash
+# cleanup-test-data.sh
+
+ENVIRONMENT=$1
+echo "Cleaning up test data for environment: $ENVIRONMENT"
+
+# Run cleanup queries
+mvn test -Dcucumber.filter.tags="@Cleanup" -Dtest.environment=$ENVIRONMENT
+
+echo "Test data cleanup completed"
+```
+
+## Performance Testing Integration
+
+### Load Testing with JMeter
+```bash
+# Run performance tests
+jmeter -n -t api-load-test.jmx -l results.jtl -e -o performance-report/
+
+# Integrate with Maven
+mvn jmeter:jmeter jmeter:results
+```
+
+### API Performance Monitoring
+```gherkin
+# Performance validation in feature files
+And verify response time is less than "1200" milliseconds
+And verify response time is less than "500" milliseconds for critical endpoints
+```
+
+## Security Testing Integration
+
+### OWASP ZAP Integration
+```bash
+# Start ZAP daemon
+zap.sh -daemon -port 8080
+
+# Run security scan
+zap-cli --zap-url http://localhost:8080 spider https://api.bizomdev.in/
+zap-cli --zap-url http://localhost:8080 active-scan https://api.bizomdev.in/
+zap-cli --zap-url http://localhost:8080 report -o security-report.html
+```
+
+### Security Test Tags
+```gherkin
+@Security
+Scenario: Test API security headers
+  Given I set up base URI for transactions
+  When I send the GET request to "endpoint" endpoint
+  Then I should see the response code as "200"
+  And verify response headers
+    | HeaderName        | HeaderValue |
+    | X-Content-Type-Options | nosniff |
+    | X-Frame-Options   | DENY |
+    | X-XSS-Protection  | 1; mode=block |
+```
+
+## Notification and Alerting
+
+### Slack Integration
+```java
+// Slack notification on test failures
+public void sendSlackNotification(String message, String channel) {
+    Slack slack = Slack.getInstance();
+    SlackMessage slackMessage = SlackMessage.builder()
+        .channel(channel)
+        .text(message)
+        .build();
+    slack.send(slackMessage);
+}
+```
+
+### Email Notifications
+```xml
+<!-- Maven plugin for email notifications -->
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-antrun-plugin</artifactId>
+    <executions>
+        <execution>
+            <phase>verify</phase>
+            <goals>
+                <goal>run</goal>
+            </goals>
+            <configuration>
+                <tasks>
+                    <mail mailhost="smtp.gmail.com" mailport="587" user="test@bizom.com" password="password">
+                        <from address="test@bizom.com"/>
+                        <to address="team@bizom.com"/>
+                        <subject>API Test Results - ${project.version}</subject>
+                        <message>API tests completed. Check reports for details.</message>
+                        <attachments>
+                            <fileset dir="target/cucumber-report-html">
+                                <include name="*.html"/>
+                            </fileset>
+                        </attachments>
+                    </mail>
+                </tasks>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+```
+
+## Best Practices
+
+### CI/CD Guidelines
+1. **Fast Feedback**: Keep test execution time under 15 minutes for development pipelines
+2. **Parallel Execution**: Use parallel test execution to reduce overall runtime
+3. **Environment Isolation**: Ensure proper environment isolation and data cleanup
+4. **Fail Fast**: Stop pipeline on critical test failures
+5. **Artifact Management**: Store and archive test reports and artifacts
+
+### Automation Standards
+1. **Idempotent Tests**: Tests should be repeatable and produce consistent results
+2. **Environment Agnostic**: Tests should work across different environments
+3. **Self-Healing**: Implement retry mechanisms for flaky tests
+4. **Comprehensive Reporting**: Generate detailed reports for all test executions
+5. **Security**: Secure sensitive data (tokens, credentials) in CI/CD pipelines

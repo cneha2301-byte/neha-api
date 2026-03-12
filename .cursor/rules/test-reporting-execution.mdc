@@ -1,0 +1,230 @@
+---
+globs: *Runner.java,*Report*.java,*Event*.java
+description: Test Reporting and Execution Patterns
+---
+
+# Test Reporting and Execution
+
+## Test Execution Framework
+
+### Test Runners
+- **BizomWebAPI Runner**: [src/test/java/com/Bizom/runner/BizomWebAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/BizomWebAPI_Runner.java)
+- **IntegrationAPI Runner**: [src/test/java/com/Bizom/runner/IntegrationAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/IntegrationAPI_Runner.java)
+- **RetailerAPI Runner**: [src/test/java/com/Bizom/runner/RetailerAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/RetailerAPI_Runner.java)
+- **TestNG Configurations**: 
+  - [BizomWebAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/BizomWebAPI_Testng.xml)
+  - [IntegrationAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/IntegrationAPI_Testng.xml)
+  - [RetailerAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/RetailerAPI_Testng.xml)
+
+### Cucumber Configuration
+```java
+// BizomWebAPI Suite
+@CucumberOptions(
+    features = "src/test/java/com/Bizom/BizomWebAPI/feature",
+    tags = "@BizomWebAPI",
+    glue = {"com/Bizom/hooks", "com/Bizom/stepDefinitions"},
+    plugin = {
+        "pretty",
+        "html:target/site/cucumber-pretty/cucumber.html",
+        "json:target/cucumber/cucumber.json",
+        "rerun:target/api_rerun.txt"
+    }
+)
+
+// IntegrationAPI Suite
+@CucumberOptions(
+    features = "src/test/java/com/Bizom/IntegrationAPI/feature",
+    tags = "@Execution",
+    glue = {"com/Bizom/hooks", "com/Bizom/stepDefinitions"},
+    plugin = {
+        "pretty",
+        "html:target/site/cucumber-pretty/cucumber.html",
+        "json:target/cucumber/cucumber.json",
+        "rerun:target/api_rerun.txt"
+    }
+)
+
+// RetailerAPI Suite
+@CucumberOptions(
+    features = "src/test/java/com/Bizom/RetailerAPI/feature",
+    tags = "@Execution",
+    glue = {"com/Bizom/hooks", "com/Bizom/stepDefinitions"},
+    plugin = {
+        "pretty",
+        "html:target/site/cucumber-pretty/cucumber.html",
+        "json:target/cucumber/cucumber.json",
+        "rerun:target/api_rerun.txt"
+    }
+)
+```
+
+## Reporting Framework
+
+### ExtentReports Integration
+- **Report Manager**: [src/main/java/com/Bizom/reportutils/ReportManager.java](mdc:src/main/java/com/Bizom/reportutils/ReportManager.java)
+- **Version**: 5.1.1
+- **Output**: HTML reports with detailed test execution information
+
+### Allure Reports
+- **Plugin**: allure-cucumber7-jvm 2.18.1
+- **Configuration**: Automatic integration with Cucumber
+- **Features**: Rich reporting with screenshots, attachments, and test categorization
+
+### Cucumber HTML Reports
+- **Plugin**: maven-cucumber-reporting 2.8.0
+- **Output Directory**: `target/cucumber-report-html`
+- **Input**: `target/cucumber/cucumber.json`
+
+## Event Handling
+
+### Cucumber Hooks
+- **Hook Definition**: [src/test/java/com/Bizom/hooks/CucumberHooksDef.java](mdc:src/test/java/com/Bizom/hooks/CucumberHooksDef.java)
+
+### Event Listeners
+- **API Events**: [src/main/java/com/Bizom/NG_Listeners/APIEvent.java](mdc:src/main/java/com/Bizom/NG_Listeners/APIEvent.java)
+- **Suite Events**: [src/main/java/com/Bizom/NG_Listeners/SuiteEvent.java](mdc:src/main/java/com/Bizom/NG_Listeners/SuiteEvent.java)
+
+## Execution Patterns
+
+### Tag-Based Execution
+```bash
+# Run BizomWebAPI suite
+mvn test -Dcucumber.filter.tags="@BizomWebAPI"
+
+# Run IntegrationAPI suite
+mvn test -Dcucumber.filter.tags="@Execution"
+
+# Run specific module within IntegrationAPI
+mvn test -Dcucumber.filter.tags="@Execution and @Orders"
+
+# Run positive scenarios
+mvn test -Dcucumber.filter.tags="@PositiveScenario"
+
+# Run GET requests only
+mvn test -Dcucumber.filter.tags="@allGet"
+```
+
+### Parallel Execution
+```xml
+<!-- TestNG XML Configuration for BizomWebAPI -->
+<suite name="BizomWebAPI Test Suite" parallel="methods" thread-count="3">
+    <test name="BizomWebAPI Tests">
+        <classes>
+            <class name="com.Bizom.runner.BizomWebAPI_Runner"/>
+        </classes>
+    </test>
+</suite>
+
+<!-- TestNG XML Configuration for IntegrationAPI -->
+<suite name="IntegrationAPI Test Suite" parallel="methods" thread-count="3">
+    <test name="IntegrationAPI Tests">
+        <classes>
+            <class name="com.Bizom.runner.IntegrationAPI_Runner"/>
+        </classes>
+    </test>
+</suite>
+
+<!-- TestNG XML Configuration for RetailerAPI -->
+<suite name="RetailerAPI Test Suite" parallel="methods" thread-count="3">
+    <test name="RetailerAPI Tests">
+        <classes>
+            <class name="com.Bizom.runner.RetailerAPI_Runner"/>
+        </classes>
+    </test>
+</suite>
+```
+
+## Report Generation
+
+### Maven Goals
+```bash
+# Clean and compile
+mvn clean compile
+
+# Run tests and generate reports
+mvn test
+
+# Generate Cucumber HTML reports
+mvn verify
+
+# Generate Allure reports
+allure serve target/allure-results
+```
+
+### Report Outputs
+- **ExtentReports**: `Execution_Reports/API_Reports/`
+- **Cucumber HTML**: `target/cucumber-report-html/`
+- **Allure Reports**: `target/allure-results/`
+- **JSON Reports**: `target/cucumber.json`
+
+## Test Data Management
+
+### Execution Reports
+- **Location**: [Execution_Reports/API_Reports/](mdc:Execution_Reports/API_Reports/)
+- **Format**: HTML with detailed test results
+- **Example**: [Execution_Reports/API_Reports/Bizom_API.html](mdc:Execution_Reports/API_Reports/Bizom_API.html)
+
+### Response Storage
+```gherkin
+# Store responses for reporting and validation
+And I store the response as "orderResponse" name using full path
+And I store the response as "userData" name using xml full path
+```
+
+## CI/CD Integration
+
+### Maven Surefire Plugin
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.19.1</version>
+    <configuration>
+        <testFailureIgnore>true</testFailureIgnore>
+        <suiteXmlFiles>
+            <!-- Choose appropriate TestNG XML based on executionBase -->
+            <suiteXmlFile>src/test/resources/NG_XMLs/BizomWebAPI_Testng.xml</suiteXmlFile>
+            <!-- OR -->
+            <suiteXmlFile>src/test/resources/NG_XMLs/IntegrationAPI_Testng.xml</suiteXmlFile>
+            <!-- OR -->
+            <suiteXmlFile>src/test/resources/NG_XMLs/RetailerAPI_Testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
+    </configuration>
+</plugin>
+```
+
+### Environment Configuration
+```properties
+# config.properties
+# Base URIs for different execution environments
+bizomWebApiBaseUri=https://devuitest.bizomdev.in/
+integrationApiBaseUri=https://devapi.bizomdev.in/
+retailerApiBaseUri=
+
+# Legacy baseURI (for backward compatibility)
+baseURI = https://devapi.bizomdev.in/
+accesstoken = 
+```
+
+## Best Practices
+
+### Test Execution
+1. **Use appropriate tags for test categorization**
+2. **Implement proper test data cleanup**
+3. **Configure parallel execution for faster feedback**
+4. **Use meaningful test names and descriptions**
+5. **Implement proper error handling and reporting**
+
+### Report Management
+1. **Generate reports for every test execution**
+2. **Archive historical reports for trend analysis**
+3. **Use consistent report naming conventions**
+4. **Include environment information in reports**
+5. **Implement report notifications for failures**
+
+### Performance Monitoring
+1. **Track test execution times**
+2. **Monitor API response times**
+3. **Set up alerts for performance degradation**
+4. **Generate performance trend reports**
+5. **Optimize slow-running tests**

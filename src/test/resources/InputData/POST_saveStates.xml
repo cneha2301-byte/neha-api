@@ -1,0 +1,10 @@
+<States>
+    <State>
+        <erp_id>APITest001</erp_id>
+        <name>APITest001</name>
+        <country_id>2</country_id>
+        <code>KA001</code>
+        <is_active>1</is_active>
+        <isunionterritories>0</isunionterritories>
+    </State>
+</States>

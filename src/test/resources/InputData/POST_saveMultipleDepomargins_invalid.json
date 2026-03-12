@@ -1,0 +1,15 @@
+{
+  "Depomargins": {
+    "Depomargin": [
+      {
+        "fromentitytype_erpid": "abc",
+        "fromentitytype": "invalid",
+        "skunit_erpid": "",
+        "toentitytype": "invalid",
+        "toentitytype_id": "",
+        "marginpercent": "abc"
+      }
+    ]
+  }
+}
+

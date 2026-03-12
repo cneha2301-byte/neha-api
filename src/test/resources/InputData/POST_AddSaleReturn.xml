@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Salereturn>
+    <fromERPId>99e1</fromERPId>
+    <toOutletId>14</toOutletId>
+    <fordate></fordate>
+    <documentrefno></documentrefno>
+    <salereturn_no></salereturn_no>
+    <payment_id>0</payment_id>
+    <payment_erp_id></payment_erp_id>
+    <userEmployeeId>1</userEmployeeId>
+    <edit_salereturn>0</edit_salereturn>
+    <Sku>
+        <cases>0</cases>
+        <units>1</units>
+        <quantity>1</quantity>
+        <batch_id>0</batch_id>
+        <reason>AAAAAAAA</reason>
+        <skuCode>6</skuCode>
+        <reason_id>0</reason_id>
+        <mfgdate></mfgdate>
+        <expiry_date></expiry_date>
+    </Sku>
+    <isPrimarySaleReturn>1</isPrimarySaleReturn>
+</Salereturn>

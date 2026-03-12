@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><sales>
+    <sale>
+        <payment>
+            <order_id>557</order_id>
+            <invoiceid>26122022008055</invoiceid>
+            <erp_id> </erp_id>
+            <outlet_erp_id>99e1</outlet_erp_id>
+            <from_warehouse_erpid>trp123</from_warehouse_erpid>
+            <mode>online</mode>
+            <amount>1560.205</amount>
+            <bill_discount>10</bill_discount>
+            <bill_discount_type>percent</bill_discount_type>
+            <fordate>2026-06-26</fordate>
+            <dispatchdocno>1223</dispatchdocno>
+            <disptachdocdate>2023-01-06</disptachdocdate>
+            <invoicebillno/>
+            <vehicalno>A7919</vehicalno>
+            <tcs_percent>10</tcs_percent>
+            <tcs_amount>15</tcs_amount>
+            <vbdiscount>
+                <vbdistype>percent</vbdistype>
+                <vdiscount>10</vdiscount>
+            </vbdiscount>
+            <!-- <Check>
+                <checkno>654345</checkno>
+                <checkdate>2022-05-09</checkdate>
+                <bankname>SBI</bankname>
+                <status>cleared</status>
+            </Check> -->
+            <onlinetransaction>
+                <bankname>SBI</bankname>
+                <comment>ssss</comment>
+                <transactionid>98789026122022</transactionid>
+                <date>2022-12-26</date>
+                <paymentMode/>
+            </onlinetransaction>
+            <addCustomeinventory>0</addCustomeinventory>
+        </payment>
+        <paymentdetail>
+            <skunit_erp_id>Cuba</skunit_erp_id>
+            <quantityincases>0</quantityincases>
+            <quantity>1.00</quantity>
+            <quantity_unitcase>0</quantity_unitcase>
+            <customgst>15</customgst>
+            <customcess>5</customcess>
+            <status>purchased</status>
+            <discount>10</discount>
+            <discount_type>percent</discount_type>
+            <status>purchased</status>
+            <amount>803.10875</amount>
+            <!-- <batchname>batch_sku6_29032022_0001</batchname>
+            <expiryDate>2022-12-31</expiryDate>
+            <manufactureDate>2021-12-31</manufactureDate> -->
+            <initializeInventory>1</initializeInventory>
+        </paymentdetail>
+        <paymentdetail>
+            <skunit_erp_id>Cuba</skunit_erp_id>
+            <quantityincases>0</quantityincases>
+            <quantity>1.00</quantity>
+            <customgst>15</customgst>
+            <customcess>5</customcess>
+            <status>purchased</status>
+            <discount>5</discount>
+            <discount_type>value</discount_type>
+            <status>purchased</status>
+            <amount>757.09625</amount>
+            <!-- <batchname>9-Batch15022022 013</batchname> -->
+            <!-- <expiryDate>2022-12-31</expiryDate> -->
+            <!-- <manufactureDate>2021-12-31</manufactureDate> -->
+            <initializeInventory>0</initializeInventory>
+        </paymentdetail>
+    </sale>
+</sales>

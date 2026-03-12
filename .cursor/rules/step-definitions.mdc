@@ -1,0 +1,60 @@
+---
+globs: *Steps.java
+description: Step Definition Patterns and Available Steps
+---
+
+# Step Definition Patterns
+
+## Available Step Definitions
+
+### Request Setup Steps (ApiBackgroundSteps.java)
+- `Given I set up base URI for transactions`
+- `When I set up request specification` with DataTable for headers
+
+### GET Request Steps (GetSteps.java)
+- `When I send the GET request to "{endpoint}" endpoint`
+- `When I send the GET request to "{endpoint}" endpoint with path parameters`
+- `When I send the GET request to "{endpoint}" endpoint with dynamic access token, path and query parameters`
+- `When I send the GET request to "{endpoint}" endpoint with query and path parameters`
+
+### POST Request Steps (PostSteps.java)
+- `When I post the request with "{payloadName}" payload`
+- `When I post the request with "{payloadName}" payload with dynamic access token and query parameters`
+- `When I post the request with "{payloadName}" payload with path parameter`
+- `When I post the request with "{payloadName}" payload with query parameter`
+- `When I post the request with XML "{payloadName}" payload`
+- `When I post the request with "{payloadName}" xml payload with dynamic access token and query parameters`
+
+### Request Modification Steps (ApiRequestModificationSteps.java)
+- `And I modify fields with random values and remove fields in "{payloadName}" payload`
+- `And I modify fields with random values and remove fields in "{payloadName}" XML payload`
+- `And I modify the field with values from stored response "{responseName}" and from datatable in "{payloadName}" payload`
+- `And I send empty body with "{payloadName}" request`
+- `And I update the fields of "{payloadName}" payload from the stored response "{responseName}" as chain api making the request map empty`
+
+### Response Validation Steps (ApiResponseValidationSteps.java)
+- `Then I should see the response code as "{statusCode}"`
+- `And the fields in response should match with expected values` with DataTable
+- `And Validating fields in XML response should match with expected values` with DataTable
+- `And validating the response contains the following values` with DataTable
+- `And verify response headers` with DataTable
+- `And verify response time is less than "{time}" milliseconds`
+- `And I store the response as "{name}" name using full path`
+- `And I store the response as "{name}" name using xml full path`
+
+## Common Patterns
+
+### Dynamic Access Token
+Use `ACCESS_TOKEN` as query parameter value to automatically resolve from stored token file.
+
+### Payload Modification
+Use JPath expressions to modify JSON payloads:
+- `$.fieldName` for direct field access
+- `$.array[0].field` for array element access
+- `storedResponse` to reference stored response values
+
+### Response Validation
+Use JPath expressions for response validation:
+- `$.Result` for boolean result fields
+- `$.error` for error messages
+- `$.error_description` for detailed error descriptions

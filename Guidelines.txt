@@ -1,0 +1,21 @@
+Hi team,
+
+This is a API automation framework, with the following tech stack:
+Java - as programming language
+Maven - as build management tool
+Testng - as test engine
+Cucumber BDD - as behaviour driven development part.
+Extent Report - as the external reporting structure
+
+NOTE: There are other dependencies in the project as you can see in the pom.xml, most of them are needed for the utils and maintenance of the Framework. Please refer to the official maven documentation for their usage. The utils could have been created differently with their usage and other set of dependencies might be available for the use for same purpose, but we have chosen these and they have been implemented, please don't change anything in src/main/java and in src/test/java/step Definitions without proper guidance and discussion, as it might cause the build failure for everyone.
+
+The framework common structure follows as:
+
+src/main/java -  this is the brain and hands of this framework. As it configures and maintains the framework integrations and utility.
+	ccl - responsible for common code library. consists of the payload header as the enums
+	api.Base - responsible for the singleton property of the framework and also the encapsulation is done in this part of the framework.
+	commonutils - these java classes are responsible for the common utility of the different source files. here we have implemented the Rest Assured methods as overloaded method as 			needed for our automation (subject to further addition withconsultation). we are presenting the resource uris as constant here for the further use of their testcases.
+	reportutils - here the extent report is configured and the reporting structure ( what would be shown and how it would ne shown isdeclared and controlled here)
+	NG_Listeners - here the testing listeners are implemented among the classes of the Suite Event and the API Event. Suite event controls the suite level properties of the framework and 			the API event controls the test case level features of the listerns along with the report generation.
+	
+ 

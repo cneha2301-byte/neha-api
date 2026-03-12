@@ -1,0 +1,14 @@
+{
+  "data": {
+    "type": "opportunity",
+    "Stage": [
+      {
+        "name": "test_stage",
+        "editable": "1",
+        "stage_no": "1",
+        "associated_with": "1"
+      }
+    ]
+  }
+}
+

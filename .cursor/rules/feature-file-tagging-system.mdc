@@ -1,0 +1,197 @@
+# Feature File Tagging System
+
+## Overview
+This document defines the 5-tag categorization system for organizing and executing feature files in the BizomWebAPI test suite.
+
+## Tag Categories
+
+### @CoreBusinessOperations
+**Purpose**: Core business transactions and operations
+**Includes**:
+- OrdersManagement
+- PaymentsManagement
+- SalesmanSalesReturnsManagement
+- InventoriesManagement
+- InventoryManagement
+- StockTransfersManagement
+- LoadInsManagement
+- LoadoutsManagement
+- DistributorTransfersManagement
+- InvoiceRequestsManagement
+- BankReceiptsManagement
+- BanksManagement
+
+### @MasterDataManagement
+**Purpose**: Master data entities and configurations
+**Includes**:
+- OutletsManagement
+- OutletCategoriesManagement
+- OutletTypesManagement
+- OutletContactsManagement
+- OutletBalancesManagement
+- OutletTargetsManagement
+- EnrolledOutletsManagement
+- AgeingOutletsManagement
+- UserManagement
+- RolesManagement
+- WarehousesManagement
+- WarehouseTypesManagement
+- WarehouseCategoriesManagement
+- WarehouseAssetsManagement
+- SKUnitsManagement
+- SkuUnitsManagement
+- SKUnitsGroupingsManagement
+- SkuUnitsGroupingsManagement
+- SkuLinesManagement
+- SkuEntityPrioritiesManagement
+- SkuGstSlabsManagement
+- SkuVisibilitiesManagement
+- BrandsManagement
+- SubbrandsManagement
+- CategoriesManagement
+- SubcategoriesManagement
+- VariantsManagement
+- SizesManagement
+- UnitsManagement
+- BeatsManagement
+- BeatDetailsManagement
+- BeatJumpsManagement
+- BeatTypesManagement
+- AreasManagement
+- AreaCategoriesManagement
+- CitiesManagement
+- DistrictsManagement
+- TownsManagement
+- VillagesManagement
+- StatesManagement
+- CountriesManagement
+- TransportersManagement
+- VehiclesManagement
+- ReasonsManagement
+- WorkflowReasonsManagement
+- TourBudgetsManagement
+- CompaniesManagement
+- BusinessTypesManagement
+- BusinessUnitsManagement
+- ChannelsManagement
+- SegmentsManagement
+- SegmentRulesManagement
+- SegmentChangeRequestsManagement
+- PopsManagement
+- PopsStrataManagement
+- MSLsManagement
+- ShelfsManagement
+- SecondaryDisplayTypesManagement
+- VisitingTypesManagement
+- DeliveryShiftsManagement
+- ShiftsManagement
+- ShiftTimingsManagement
+- StagesManagement
+- LanguagesManagement
+- CurrencyListManagement
+- CreditLevelsManagement
+- EntityTagsManagement
+- EntityWisePropertiesManagement
+- MenusManagement
+- AppTabSequencesManagement
+
+### @ConfigurationSettings
+**Purpose**: System configuration, settings, and administrative functions
+**Includes**:
+- SettingsManagement
+- ClaimApprovalsManagement
+- ClaimLimitConfigurationsManagement
+- UserClaimTypesManagement
+- SaleReturnApprovalConfigurationsManagement
+- LeaveConfigurationsManagement
+- LeaveTypesManagement
+- DisclaimersManagement
+- ManagerRolesManagement
+- MappingsManagement
+- InvoiceTemplateMappingsManagement
+- BenefitCappingManagement
+- DepoMarginsManagement
+- AggregateTypesManagement
+- InventoryTypesManagement
+- PromotionTypesManagement
+- SchemeTradeTypeMastersManagement
+- MerchandisingShelfTypesManagement
+- ActivityTypesManagement
+
+### @ReportsAnalytics
+**Purpose**: Reporting, analytics, and data visualization
+**Includes**:
+- ReportsManagement
+- ReportGroupsManagement
+- ReportMappingsManagement
+- DashboardsManagement
+- DashboardManagement
+- EndOfDayReportsManagement
+- CustomReportsManagement
+- ActivityFormReportManagement
+
+### @SupportingFunctions
+**Purpose**: Supporting business functions, activities, and auxiliary features
+**Includes**:
+- ActivitiesManagement
+- ActivityFormDatasManagement
+- ClaimsManagement
+- DiscountsManagement
+- DiscountCategoriesManagement
+- SchemesManagement
+- MerchandisingManagement
+- CompetitorManagement
+- ComplaintManagement
+- ChecksManagement
+- CallsManagement
+- BidsManagement
+- CollateralsManagement
+- PayeeDetailsManagement
+- PushRegistrationsManagement
+- SyncApisManagement
+- MdmsManagement
+- BackgroundProcessesManagement
+- AssetManagement
+- General
+
+## Tagging Convention
+
+### Standard Feature File Tag Structure
+```gherkin
+@BizomWebAPI @[CategoryTag] @[ModuleName] @[AdditionalTags]
+Feature: [Feature Description]
+```
+
+### Example
+```gherkin
+@BizomWebAPI @MasterDataManagement @ReasonsManagement @GetReasonTypeData
+Feature: Get Reason Type Data API Testing
+```
+
+## Execution
+
+### Run tests by category:
+- `@CoreBusinessOperations` - Execute all core business operation tests
+- `@MasterDataManagement` - Execute all master data management tests
+- `@ConfigurationSettings` - Execute all configuration and settings tests
+- `@ReportsAnalytics` - Execute all reports and analytics tests
+- `@SupportingFunctions` - Execute all supporting function tests
+
+### Combined execution:
+- `@CoreBusinessOperations,@MasterDataManagement` - Execute both categories
+- `@BizomWebAPI` - Execute all tests (includes all categories)
+
+## Adding New Feature Files
+
+When creating a new feature file:
+1. Identify the management directory it belongs to
+2. Refer to this document to determine the appropriate category tag
+3. Add the category tag as the second tag (after @BizomWebAPI)
+4. Follow the standard tagging convention
+
+## Maintenance
+
+This document should be updated when:
+- New management directories are added
+- Existing directories are reorganized
+- Tag categories need to be adjusted

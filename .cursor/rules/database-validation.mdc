@@ -1,0 +1,368 @@
+---
+globs: *DB*.java,*Validation*.java
+description: Database Validation and Testing Patterns
+---
+
+# Database Validation Patterns
+
+## Database Utilities
+
+### Database Connection
+- **DBUtil.java**: Database connection management with MySQL integration
+- **DBQueries.java**: Centralized SQL queries (currently minimal implementation)
+- **Config**: Database credentials hardcoded in DBUtil.java for dev environment
+
+### Supported Databases
+- **MySQL**: Direct connection to AWS RDS instance
+- **Connection Details**: dev-bizom.ckjulgq8jktj.ap-south-1.rds.amazonaws.com/devuitest_bizomdev_in_bizom
+
+## Database Integration in Request Modification
+
+### DB Data Fetching in Payloads (ApiRequestModificationSteps.java)
+The framework supports direct database data fetching during payload modification using the `DB:` prefix pattern:
+
+```gherkin
+When I modify fields with random values and remove fields in "createUser" payload
+  | JPath         | Value                                           |
+  | $.userId      | randomSmallInt                                  |
+  | $.phoneNumber | randomPhoneNumber                               |
+  | $.userName    | DB:users:name: id=101                           |
+  | $.address     | DB:addresses:city: user_id=101                  |
+  | $.name        | DB:users:name: id=101                           |
+  | $.createdDate | todayDate                                       |
+  | $.expiryDate  | futureDate:30                                   |
+  | $.dob         | pastDate:3650                                   |
+```
+
+### DB Value Format
+**Pattern**: `DB:tableName:column1,column2:whereClause`
+
+**Examples**:
+- `DB:users:name: id=101` - Single column from users table
+- `DB:addresses:city,state: user_id=101` - Multiple columns from addresses table
+- `DB:orders:order_id: status='ACTIVE'` - With complex where clause
+
+### Implementation Details
+```java
+// In ApiRequestModificationSteps.java (lines 813-832)
+if (value != null && value.startsWith("DB:")) {
+    // Expected format: DB:tableName:col1,col2:whereClause
+    String[] parts = value.split(":", 4);
+    String tableName = parts[1];
+    List<String> cols = Arrays.asList(parts[2].split(","));
+    String whereClause = parts.length > 3 ? parts[3] : null;
+
+    List<Map<String, Object>> dbData = DBUtil.getData(tableName, cols, whereClause);
+    if (!dbData.isEmpty()) {
+        // If single column requested → just pick first row/col
+        if (cols.size() == 1) {
+            value = String.valueOf(dbData.get(0).get(cols.get(0)));
+        } else {
+            // If multiple columns, you might need JSON merge instead
+            value = dbData.get(0).toString();
+        }
+    } else {
+        throw new RuntimeException("No DB data found for: " + value);
+    }
+}
+```
+
+## Database Validation Steps
+
+### Available DB Validation Steps
+
+#### Single Field Validation (DBValidationSteps.java)
+```gherkin
+Then I validate response field "{jsonPath}" against DB column "{column}" from table "{table}" with where "{whereClause}"
+```
+
+#### Multiple Fields Validation with DataTable (ApiResponseValidationSteps.java)
+```gherkin
+And I validate response fields against database values
+  | JPath        | ExpectedValue                    |
+  | $.userId     | DB:users:user_id: id=101        |
+  | $.userName   | DB:users:name: id=101           |
+  | $.orderId    | DB:orders:order_id: MAX(id)     |
+  | $.status     | ACTIVE                          |
+```
+
+### Response vs Database Validation Examples
+
+#### Single Field Validation
+```gherkin
+# API Response
+Then I should see the response code as "200"
+And the fields in response should match with expected values
+  | JPath     | Value |
+  | $.Result  | true  |
+
+# Database Validation
+Then I validate response field "$.userId" against DB column "user_id" from table "users" with where "id=101"
+```
+
+#### Multiple Fields Validation with DataTable
+```gherkin
+# API Response
+Then I should see the response code as "200"
+
+# Database Validation with DataTable
+And I validate response fields against database values
+  | JPath           | ExpectedValue                           |
+  | $.userId        | DB:users:user_id: id=101               |
+  | $.userName      | DB:users:name: id=101                  |
+  | $.email         | DB:users:email: id=101                 |
+  | $.orderId       | DB:orders:order_id: MAX(id)            |
+  | $.orderStatus   | DB:orders:status: order_id=12345       |
+  | $.createdDate   | DB:orders:created_date: order_id=12345 |
+  | $.isActive      | true                                    |
+```
+
+### Implementation Examples
+
+#### Single Field Validation
+```java
+@Then("^I validate response field \"([^\"]*)\" against DB column \"([^\"]*)\" from table \"([^\"]*)\" with where \"([^\"]*)\"$")
+public void validateResponseWithDB(String jsonPath, String column, String table, String where) {
+    String actualValue = JsonPath.read(apiTestContext.getApiTestBase().response.asString(), jsonPath);
+    
+    List<Map<String, Object>> dbData = DBUtil.getData(table, Collections.singletonList(column), where);
+    String expectedValue = String.valueOf(dbData.get(0).get(column));
+    
+    Assert.assertEquals("Response mismatch with DB", expectedValue, actualValue);
+}
+```
+
+#### Multiple Fields Validation with DataTable
+```java
+@And("I validate response fields against database values")
+public void validateResponseFieldsAgainstDatabase(DataTable dataTable) {
+    List<Map<String, String>> table = dataTable.asMaps();
+    String response = apiTestContext.getApiTestBase().response.asString();
+    
+    for (Map<String, String> row : table) {
+        String jPath = row.get("JPath");
+        String expectedValue = row.get("ExpectedValue");
+        
+        // Extract actual value from response
+        String actualValue = String.valueOf(inPath(response, jPath));
+        
+        // Handle database value fetching
+        if (expectedValue != null && expectedValue.startsWith("DB:")) {
+            expectedValue = fetchValueFromDatabase(expectedValue);
+        }
+        
+        // Perform assertion
+        Assert.assertEquals(actualValue, expectedValue, 
+            "Response field validation failed for JPath: " + jPath);
+    }
+}
+```
+
+## DBUtil Implementation
+
+### Generic Data Fetching Method
+```java
+public static List<Map<String, Object>> getData(String tableName,
+                                                List<String> columns,
+                                                String whereClause) {
+    List<Map<String, Object>> results = new ArrayList<>();
+    String columnString = String.join(",", columns);
+
+    String query = "SELECT " + columnString + " FROM " + tableName;
+    if (whereClause != null && !whereClause.isEmpty()) {
+        query += " WHERE " + whereClause;
+    }
+
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+
+        ResultSetMetaData metaData = rs.getMetaData();
+        int colCount = metaData.getColumnCount();
+
+        while (rs.next()) {
+            Map<String, Object> row = new HashMap<>();
+            for (int i = 1; i <= colCount; i++) {
+                row.put(metaData.getColumnName(i), rs.getObject(i));
+            }
+            results.add(row);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new RuntimeException("DB fetch failed: " + e.getMessage());
+    }
+
+    return results;
+}
+```
+
+### Custom Query Execution for Aggregate Functions
+```java
+// Execute custom SQL queries (for aggregate functions like MAX, MIN, COUNT, etc.)
+public static String executeCustomQuery(String query) {
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+
+        if (rs.next()) {
+            // Return the first column value as string
+            Object result = rs.getObject(1);
+            return result != null ? result.toString() : "";
+        } else {
+            throw new RuntimeException("No result returned from query: " + query);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new RuntimeException("Custom query execution failed: " + e.getMessage() + ". Query: " + query);
+    }
+}
+
+// Execute custom SQL queries with specific column name
+public static String executeCustomQuery(String query, String columnName) {
+    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(query)) {
+
+        if (rs.next()) {
+            // Try to get by column name first, then by index
+            Object result;
+            try {
+                result = rs.getObject(columnName);
+            } catch (SQLException e) {
+                // If column name fails, try by index 1
+                result = rs.getObject(1);
+            }
+            return result != null ? result.toString() : "";
+        } else {
+            throw new RuntimeException("No result returned from query: " + query);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new RuntimeException("Custom query execution failed: " + e.getMessage() + ". Query: " + query);
+    }
+}
+```
+
+## Test Data Patterns
+
+### Dynamic Test Data Generation
+Combine database data with random generation:
+
+```gherkin
+When I modify fields with random values and remove fields in "createUser" payload
+  | JPath         | Value                    |
+  | $.userId      | randomSmallInt           |
+  | $.userName    | DB:users:name: id=101    |
+  | $.phoneNumber | randomPhoneNumber        |
+  | $.createdDate | todayDate                |
+  | $.expiryDate  | futureDate:30            |
+  | $.dob         | pastDate:3650            |
+```
+
+### Supported Value Types
+- **Random Values**: `random`, `randomInt`, `randomSmallInt`, `randomString`, `randomPhoneNumber`, `randomDouble`
+- **Date Values**: `todayDate`, `pastDate:N`, `futureDate:N`
+- **Database Values**: `DB:table:column:whereClause`
+- **Static Values**: Any literal string value
+
+### Supported DB Patterns for Response Validation
+
+#### Basic Column Fetching
+```gherkin
+| JPath        | ExpectedValue                    |
+| $.userId     | DB:users:user_id: id=101        |
+| $.userName   | DB:users:name: id=101           |
+| $.email      | DB:users:email: id=101          |
+```
+
+#### Aggregate Functions
+```gherkin
+| JPath        | ExpectedValue                    |
+| $.maxOrderId | DB:orders:order_id: MAX(id)     |
+| $.minUserId  | DB:users:user_id: MIN(id)       |
+| $.totalCount | DB:orders:order_id: COUNT(*)    |
+```
+
+#### Complex WHERE Clauses
+```gherkin
+| JPath           | ExpectedValue                           |
+| $.orderStatus   | DB:orders:status: order_id=12345       |
+| $.createdDate   | DB:orders:created_date: order_id=12345 |
+| $.userRole      | DB:users:role: id=101 AND active=1     |
+```
+
+#### Multiple Columns (returns as string representation)
+```gherkin
+| JPath        | ExpectedValue                    |
+| $.userInfo   | DB:users:name,email: id=101     |
+| $.address    | DB:addresses:city,state: user_id=101 |
+```
+
+### Complete Example: User Creation API with Database Validation
+
+```gherkin
+Feature: User Creation API with Database Validation
+
+  Scenario: Create user and validate against database
+    Given I set up base URI for transactions
+    
+    # Step 1: Create user with database data
+    When I modify fields with random values and remove fields in "createUser" payload
+      | JPath         | Value                                           |
+      | $.userId      | randomSmallInt                                  |
+      | $.userName    | DB:users:name: id=101                           |
+      | $.email       | DB:users:email: id=101                          |
+      | $.phoneNumber | randomPhoneNumber                               |
+      | $.createdDate | todayDate                                       |
+      | $.expiryDate  | futureDate:30                                   |
+    
+    And I post the request with "createUser" payload with dynamic access token and query parameters
+      | Query         | Value         |
+      | access_token  | ACCESS_TOKEN  |
+    
+    # Step 2: Validate response status
+    Then I should see the response code as "200"
+    
+    # Step 3: Validate response fields against database
+    And I validate response fields against database values
+      | JPath           | ExpectedValue                           |
+      | $.userId        | DB:users:user_id: id=101               |
+      | $.userName      | DB:users:name: id=101                  |
+      | $.email         | DB:users:email: id=101                 |
+      | $.status        | ACTIVE                                  |
+      | $.createdDate   | DB:users:created_date: id=101          |
+      | $.maxOrderId    | DB:orders:order_id: MAX(id)            |
+      | $.totalOrders   | DB:orders:order_id: COUNT(*)           |
+    
+    # Step 4: Store response for chaining
+    And I store the response as "userResponse" name using full path
+```
+
+## Best Practices
+
+### Database Integration Guidelines
+1. **Use DB: prefix for database data fetching in payload modification and response validation**
+2. **Always specify WHERE clauses to ensure data consistency**
+3. **Handle empty result sets with proper error messages**
+4. **Use single column fetches for simple value replacement**
+5. **Combine DB data with random generation for comprehensive testing**
+6. **Use DataTable validation for multiple field validation against database**
+7. **Leverage aggregate functions (MAX, MIN, COUNT) for dynamic data validation**
+
+### Performance Considerations
+1. **Use specific WHERE clauses to limit result sets**
+2. **Fetch only required columns to minimize data transfer**
+3. **Handle connection failures gracefully with meaningful error messages**
+4. **Use direct SQL queries for better performance than ORM**
+
+### Error Handling
+1. **Validate database connectivity before test execution**
+2. **Provide meaningful error messages for missing data**
+3. **Handle SQL exceptions with proper logging**
+4. **Implement fallback mechanisms for database unavailability**
+
+### Security Considerations
+1. **Use parameterized queries to prevent SQL injection**
+2. **Limit database access to test environment only**
+3. **Avoid hardcoding credentials in production code**
+4. **Implement proper connection cleanup**

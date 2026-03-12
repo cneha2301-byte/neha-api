@@ -1,0 +1,22 @@
+{
+  "_token": "d1xSeemrrPaINIgI8Pigb7uqLLC8lSaFF86aNu5y",
+  "data": {
+    "Influencer": {
+      "name": "test_influencer",
+      "erp_id": "123456",
+      "address": "",
+      "pin": "",
+      "phone": "",
+      "dialcode_phoneno": "",
+      "mailaddress": "",
+      "dateofbirth": "",
+      "influencertype_id": "0",
+      "influencer_image": "",
+      "bankbeneficiaryname": "",
+      "bankaccountno": "",
+      "bankaccounttype": "",
+      "bankifsccode": ""
+    }
+  }
+}
+

@@ -1,0 +1,14 @@
+<data>
+    <Inventory>
+        <warehouseErpId>trp123</warehouseErpId>
+        <skuCode>Fanta</skuCode>
+        <batchName>ABC006_Batch001</batchName>
+        <batchExpiry>31-12-2025</batchExpiry>
+        <batchManufactureDate>31-12-2024</batchManufactureDate>
+        <availableInventoryInCases></availableInventoryInCases>
+        <availableInventory>20</availableInventory>
+        <mrp>1500</mrp>
+        <price>355</price>
+        <is_active>1</is_active>
+    </Inventory>
+</data>

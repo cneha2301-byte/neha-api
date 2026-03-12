@@ -1,0 +1,11 @@
+{
+  "data": {
+    "Inventorytype": {
+      "name": "cocacola",
+      "name_alias": "test_alias",
+      "is_active": "1",
+      "iseditable": "1"
+    }
+  }
+}
+

@@ -1,0 +1,24 @@
+{
+  "data": {
+    "Asset": {
+      "name": "test_asset",
+      "asset_type_id": "1",
+      "erpno": "",
+      "price": "",
+      "description": "",
+      "image": "",
+      "assetorderactivityform_id": "",
+      "assetdetailactivityform_id": "",
+      "assetredeploymentactivityform_id": "",
+      "assetaudtactivityform_id": [""],
+      "assetauditreason_id": [""],
+      "assetderegisteractivityform_id": "",
+      "is_active": "1",
+      "qrcodeenable": "0",
+      "is_autoapprove": "1",
+      "is_smart_asset": "0",
+      "Asset_validation": "0"
+    }
+  }
+}
+

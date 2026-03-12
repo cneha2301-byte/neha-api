@@ -1,0 +1,61 @@
+---
+description: API Endpoint Mapping and Resource URI Patterns
+---
+
+# API Endpoint Mapping
+
+## Resource URI Management
+
+All API endpoints are centrally managed in [src/main/java/com/Bizom/commonUtils/ResourceURIS.java](mdc:src/main/java/com/Bizom/commonUtils/ResourceURIS.java).
+
+### Common Endpoint Patterns
+
+#### Orders API
+- `postAddOrders` → `/orders/addorderapi`
+- `list_orders_positive` → `/orders/listorders`
+- `postChangeDirectOrderState` → `/orders/changeDirectOrderStateApi`
+
+#### Users API
+- `getListUsers` → `/users/getusers/{startDate}/{endDate}/{h1}/{h2}/{h3}/{h4}`
+- `postCreateUsers` → `/users/addapi`
+- `postEditUser` → `/users/editapi`
+- `list_users_positive_withoutPath` → `/users/getusers`
+
+#### Leave Management API
+- `list_user_leaves` → `/userleaves/getUserLeave/{fromdate}/{todate}/{startseq}/{endseq}/{responsetype}`
+- `applyLeave` → `/userleaves/applyLeave`
+
+#### Sales API
+- `POST_AddPrimarySales` → `/payments/addprimarysale`
+- `POST_changePaymentState` → `/payments/changePaymentState`
+- `list_counter_sales` → `/payments/getCounterSales`
+
+#### Product/SKU API
+- `postAddSku` → `/skunits/add/xml`
+- `post_EditSkunits` → `/skunits/updatesku/xml`
+- `getallcompanyskus` → `/skunits/getallcompanyskus`
+
+## Adding New Endpoints
+
+1. Add endpoint constant in `ResourceURIS.java`:
+```java
+private static final String newEndpoint = "/api/newendpoint";
+```
+
+2. Add case in `getResourceURI()` method:
+```java
+case "newEndpointKey":
+    return newEndpoint;
+```
+
+3. Use endpoint key in feature files:
+```gherkin
+And I send the GET request to "newEndpointKey" endpoint
+```
+
+## Endpoint Naming Conventions
+
+- GET endpoints: `list_{module}_{action}` or `get{ModuleName}`
+- POST endpoints: `post{ActionName}` or `POST_{ActionName}`
+- Negative test endpoints: `{endpoint}_neg` or `invalid_{endpoint}`
+- No parameter endpoints: `{endpoint}_NoParams`

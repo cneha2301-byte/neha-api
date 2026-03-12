@@ -1,0 +1,9 @@
+[
+  {
+    "warehouse_erp_id": "trp123",
+    "outlet_erp_id": "erp123",
+    "amount": "1000",
+    "fordate": "2025-07-09",
+    "mode": "cash"
+  }
+]

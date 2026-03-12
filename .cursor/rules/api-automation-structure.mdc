@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+description: API Automation Project Structure and Conventions
+---
+
+# API Automation Project Structure
+
+This is a Java-based API automation framework using Cucumber, RestAssured, and Maven with support for multiple API suites.
+
+## Project Structure
+
+- **Main Framework**: [pom.xml](mdc:pom.xml) - Maven project with dependencies
+- **Test Features**: Three separate feature repositories based on executionBase configuration
+- **Step Definitions**: [src/test/java/com/Bizom/stepDefinitions/](mdc:src/test/java/com/Bizom/stepDefinitions/) - Shared Java step implementation classes
+- **Utilities**: [src/main/java/com/Bizom/commonUtils/](mdc:src/main/java/com/Bizom/commonUtils/) - Common utility classes
+- **Test Data**: [src/test/resources/InputData/](mdc:src/test/resources/InputData/) - JSON/XML test payloads
+- **Runners**: [src/test/java/com/Bizom/runner/](mdc:src/test/java/com/Bizom/runner/) - TestNG runners for each API suite
+
+## Multi-Suite Architecture
+
+The framework supports three distinct API suites with separate feature repositories:
+
+### 1. BizomWebAPI Suite
+- **Feature Path**: [src/test/java/com/Bizom/BizomWebAPI/feature/](mdc:src/test/java/com/Bizom/BizomWebAPI/feature/)
+- **Runner**: [BizomWebAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/BizomWebAPI_Runner.java)
+- **TestNG Config**: [BizomWebAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/BizomWebAPI_Testng.xml)
+- **Base URI**: `bizomWebApiBaseUri=https://devuitest.bizomdev.in/`
+- **Tags**: `@BizomWebAPI`
+
+### 2. IntegrationAPI Suite
+- **Feature Path**: [src/test/java/com/Bizom/IntegrationAPI/feature/](mdc:src/test/java/com/Bizom/IntegrationAPI/feature/)
+- **Runner**: [IntegrationAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/IntegrationAPI_Runner.java)
+- **TestNG Config**: [IntegrationAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/IntegrationAPI_Testng.xml)
+- **Base URI**: `integrationApiBaseUri=https://devapi.bizomdev.in/`
+- **Tags**: `@Execution`
+
+### 3. RetailerAPI Suite
+- **Feature Path**: [src/test/java/com/Bizom/RetailerAPI/feature/](mdc:src/test/java/com/Bizom/RetailerAPI/feature/)
+- **Runner**: [RetailerAPI_Runner.java](mdc:src/test/java/com/Bizom/runner/RetailerAPI_Runner.java)
+- **TestNG Config**: [RetailerAPI_Testng.xml](mdc:src/test/resources/NG_XMLs/RetailerAPI_Testng.xml)
+- **Base URI**: `retailerApiBaseUri=` (configurable)
+- **Tags**: `@Execution`
+
+## Execution Configuration
+
+### executionBase Parameter
+Users must specify the `executionBase` parameter to determine which API suite to execute:
+- `executionBase = WebApi` → Executes BizomWebAPI suite
+- `executionBase = Integration` → Executes IntegrationAPI suite  
+- `executionBase = Retailer` → Executes RetailerAPI suite
+
+### Feature File Organization
+- Features are organized by API modules within each suite (Users, Orders, Sales, etc.)
+- Each module contains GET/POST feature files
+- Naming convention: `{HTTP_METHOD}_{API_NAME}.feature`
+
+### Step Definitions (Shared)
+- `GetSteps.java` - GET request step definitions
+- `PostSteps.java` - POST request step definitions  
+- `ApiRequestModificationSteps.java` - Request modification and validation steps
+- `ApiResponseValidationSteps.java` - Response validation steps
+- `DBValidationSteps.java` - Database validation steps
+- `DeleteSteps.java` - DELETE request step definitions
+- `PatchSteps.java` - PATCH request step definitions
+- `PutSteps.java` - PUT request step definitions
+
+### Resource URIs
+- [src/main/java/com/Bizom/commonUtils/ResourceURIS.java](mdc:src/main/java/com/Bizom/commonUtils/ResourceURIS.java) - Centralized endpoint definitions
+- Endpoints mapped by request name keys (e.g., "zones_add", "subzones_add")
+
+### Test Data
+- JSON payloads in [src/test/resources/InputData/](mdc:src/test/resources/InputData/)
+- XML payloads for specific APIs
+- Configuration in [src/test/resources/Configurations/config.properties](mdc:src/test/resources/Configurations/config.properties)

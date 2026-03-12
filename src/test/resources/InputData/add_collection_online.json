@@ -1,0 +1,14 @@
+[
+  {
+    "warehouse_erp_id": "trp123",
+    "outlet_erp_id": "erp123",
+    "amount": "10000",
+    "fordate": "2025-07-11",
+    "mode": "online",
+    "Onlinetransaction": {
+      "transactionid": "48740001162387493321",
+      "bankname": "test bank11888",
+      "date": "2025-07-11"
+    }
+  }
+]

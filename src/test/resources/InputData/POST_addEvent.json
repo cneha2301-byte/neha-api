@@ -1,0 +1,40 @@
+{
+  "Taskdetail": {
+    "description": "Demo",
+    "extradata": [
+      {
+        "characteristics": "",
+        "category": "2",
+        "subcategories": "6,8,1"
+      }
+    ],
+    "task_id": "5",
+    "location_id": "0",
+    "outlet_id": "500",
+    "tag_source": "tags",
+    "remark": "",
+    "start_time": "17:45:00",
+    "locationoutlet_id": "31057",
+    "start_date": "2025-09-11",
+    "end_time": "20:30:00",
+    "end_date": "2025-09-11"
+  },
+  "Activityformdata": {
+    "activityformfield_id": "",
+    "user_id": "34",
+    "activity_type": "training_event_creation"
+  },
+  "Taskassignee": {
+    "1": {
+      "outlet_id": "500",
+      "outletcontact_id": "109"
+    },
+    "0": {
+      "user_id": "34"
+    }
+  },
+  "Task": {
+    "id": "5"
+  }
+}
+

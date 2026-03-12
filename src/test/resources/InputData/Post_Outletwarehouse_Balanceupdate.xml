@@ -1,0 +1,5 @@
+<Warehouse>
+    <from_warehouse_erpid>trp124</from_warehouse_erpid>
+    <to_warehouse_erpid>trp125</to_warehouse_erpid>
+    <balance>20</balance>
+</Warehouse>
